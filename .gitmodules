@@ -1,0 +1,32 @@
+[submodule "TomatoEngine/vendor/imgui"]
+	path = TomatoEngine/vendor/imgui
+	url = https://github.com/ocornut/imgui.git
+	branch = docking
+[submodule "TomatoEngine/vendor/box2d"]
+	path = TomatoEngine/vendor/box2d
+	url = https://github.com/erincatto/box2d.git
+	branch = main
+[submodule "TomatoEngine/vendor/DirectXTK"]
+	path = TomatoEngine/vendor/DirectXTK
+	url = https://github.com/microsoft/DirectXTK
+	branch = main
+[submodule "TomatoEngine/vendor/ImGuizmo"]
+	path = TomatoEngine/vendor/ImGuizmo
+	url = https://github.com/CedricGuillemet/ImGuizmo.git
+	branch = master
+[submodule "TomatoEngine/vendor/fmt"]
+	path = TomatoEngine/vendor/fmt
+	url = https://github.com/fmtlib/fmt.git
+	branch = master
+[submodule "TomatoEngine/vendor/yaml-cpp"]
+	path = TomatoEngine/vendor/yaml-cpp
+	url = https://github.com/jbeder/yaml-cpp.git
+	branch = master
+[submodule "TomatoEngine/vendor/DirectXTex"]
+	path = TomatoEngine/vendor/DirectXTex
+	url = https://github.com/microsoft/DirectXTex.git
+	branch = main
+[submodule "TomatoEngine/vendor/spdlog"]
+	path = TomatoEngine/vendor/spdlog
+	url = https://github.com/gabime/spdlog.git
+	branch = v1.x

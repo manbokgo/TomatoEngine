@@ -81,12 +81,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)</OutDir>
-    <IntDir>$(SolutionDir)bin-int\$(Configuration)\$(ProjectName)</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)</OutDir>
-    <IntDir>$(SolutionDir)bin-int\$(Configuration)\$(ProjectName)</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -131,7 +131,8 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\TomatoEngine\src;..\TomatoEngine\vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -150,7 +151,8 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\TomatoEngine\src;..\TomatoEngine\vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>

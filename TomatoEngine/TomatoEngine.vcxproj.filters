@@ -1,9 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="src\pch.h" />
+    <ClInclude Include="vendor\ImGuizmo\GraphEditor.h">
+      <Filter>vendor\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\ImGuizmo\ImCurveEdit.h">
+      <Filter>vendor\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\ImGuizmo\ImGradient.h">
+      <Filter>vendor\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\ImGuizmo\ImGuizmo.h">
+      <Filter>vendor\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\ImGuizmo\ImSequencer.h">
+      <Filter>vendor\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\ImGuizmo\ImZoomSlider.h">
+      <Filter>vendor\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\imconfig.h">
+      <Filter>vendor\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\imgui.h">
+      <Filter>vendor\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\imgui_internal.h">
+      <Filter>vendor\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pch.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\pch.cpp" />
+    <ClCompile Include="vendor\ImGuizmo\GraphEditor.cpp">
+      <Filter>vendor\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\ImGuizmo\ImCurveEdit.cpp">
+      <Filter>vendor\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\ImGuizmo\ImGradient.cpp">
+      <Filter>vendor\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\ImGuizmo\ImGuizmo.cpp">
+      <Filter>vendor\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\ImGuizmo\ImSequencer.cpp">
+      <Filter>vendor\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui.cpp">
+      <Filter>vendor\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui_demo.cpp">
+      <Filter>vendor\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui_draw.cpp">
+      <Filter>vendor\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui_tables.cpp">
+      <Filter>vendor\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui_widgets.cpp">
+      <Filter>vendor\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="vendor">
+      <UniqueIdentifier>{6a13fab5-5366-4ed0-8da7-3e168e09259f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\ImGui">
+      <UniqueIdentifier>{73eac626-8822-4c64-b30c-42c9019b206f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\ImGuizmo">
+      <UniqueIdentifier>{0f60d7f8-813b-41a8-8c60-3371d7ca9cd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{b1012200-0bac-4f3d-a559-ace359a5833f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Core">
+      <UniqueIdentifier>{2df6a1e5-1beb-462c-8160-310c792b9781}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

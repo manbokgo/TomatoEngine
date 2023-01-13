@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\TomatoEditor.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\TomatoEditor.h" />
+    <Filter Include="src">
+      <UniqueIdentifier>{19d7b9c8-77c6-42ce-8856-ffc5e190b3ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

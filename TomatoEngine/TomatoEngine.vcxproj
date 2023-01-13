@@ -20,12 +20,45 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch.h" />
+    <ClInclude Include="vendor\ImGuizmo\GraphEditor.h" />
+    <ClInclude Include="vendor\ImGuizmo\ImCurveEdit.h" />
+    <ClInclude Include="vendor\ImGuizmo\ImGradient.h" />
+    <ClInclude Include="vendor\ImGuizmo\ImGuizmo.h" />
+    <ClInclude Include="vendor\ImGuizmo\ImSequencer.h" />
+    <ClInclude Include="vendor\ImGuizmo\ImZoomSlider.h" />
+    <ClInclude Include="vendor\imgui\imconfig.h" />
+    <ClInclude Include="vendor\imgui\imgui.h" />
+    <ClInclude Include="vendor\imgui\imgui_internal.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="vendor\ImGuizmo\GraphEditor.cpp" />
+    <ClCompile Include="vendor\ImGuizmo\ImCurveEdit.cpp" />
+    <ClCompile Include="vendor\ImGuizmo\ImGradient.cpp" />
+    <ClCompile Include="vendor\ImGuizmo\ImGuizmo.cpp" />
+    <ClCompile Include="vendor\ImGuizmo\ImSequencer.cpp" />
+    <ClCompile Include="vendor\imgui\imgui.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_demo.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_draw.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_tables.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="vendor\box2d\build\src\box2d.vcxproj">
+      <Project>{2c0c0b1b-2a02-3a37-b041-9533d108f0df}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\DirectXTK\DirectXTK_Desktop_2022_Win10.vcxproj">
+      <Project>{e0b52ae7-e160-4d32-bf3f-910b785e5a8e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\fmt\build\fmt.vcxproj">
+      <Project>{b3ac8c04-83ce-3328-ab2e-d2fba32e712c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\yaml-cpp\build\yaml-cpp.vcxproj">
+      <Project>{b15eff5b-c327-3c77-8bf4-40c344e694a1}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -82,12 +115,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)bin\$(Configuration)\TomatoEngine</OutDir>
-    <IntDir>$(SolutionDir)bin-int\$(Configuration)\TomatoEngine</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(Configuration)\$(ProjectName)\</IntDir>
+    <ExternalIncludePath>vendor\box2d\include;vendor\DirectXTK\Inc;vendor\FMOD\include;vendor\fmt\include;vendor\icons\include;vendor\ImGuizmo;vendor\imgui;vendor\yaml-cpp\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)bin\$(Configuration)\TomatoEngine</OutDir>
-    <IntDir>$(SolutionDir)bin-int\$(Configuration)\TomatoEngine</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(Configuration)\$(ProjectName)\</IntDir>
+    <ExternalIncludePath>vendor\box2d\include;vendor\DirectXTK\Inc;vendor\FMOD\include;vendor\fmt\include;vendor\icons\include;vendor\ImGuizmo;vendor\imgui;vendor\yaml-cpp\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -134,12 +169,17 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>
       </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>vendor\FMOD\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>fmodL_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -154,6 +194,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -162,6 +203,10 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>vendor\FMOD\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
