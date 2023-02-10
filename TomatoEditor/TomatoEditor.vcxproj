@@ -22,9 +22,50 @@
     <ProjectReference Include="..\DeadCells\DeadCells.vcxproj">
       <Project>{bdfb79cd-5852-49db-a2ff-c2805a0fe787}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\TomatoEngine\TomatoEngine.vcxproj">
-      <Project>{75e98b45-5df6-4767-8336-0ca8ac4d96fe}</Project>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\EditorApp.cpp" />
+    <ClCompile Include="src\CreateTestLevel.cpp" />
+    <ClCompile Include="src\EditorLayer.cpp" />
+    <ClCompile Include="src\Panels\AssetPanel.cpp" />
+    <ClCompile Include="src\Panels\BasePanel.cpp" />
+    <ClCompile Include="src\Panels\ConsolePanel.cpp" />
+    <ClCompile Include="src\Panels\ProjectSettingsPanel.cpp" />
+    <ClCompile Include="src\Panels\PropertiesPanel.cpp" />
+    <ClCompile Include="src\Panels\RendererSettingsPanel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Panels\SceneHierarchyPanel.cpp" />
+    <ClCompile Include="src\Panels\SceneViewport.cpp" />
+    <ClCompile Include="src\Panels\StatsPanel.cpp" />
+    <ClCompile Include="src\pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\Utils\EditorTheme.cpp" />
+    <ClCompile Include="src\Utils\UI.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\CreateTestLevel.h" />
+    <ClInclude Include="src\EditorLayer.h" />
+    <ClInclude Include="src\Panels\AssetPanel.h" />
+    <ClInclude Include="src\Panels\BasePanel.h" />
+    <ClInclude Include="src\Panels\ConsolePanel.h" />
+    <ClInclude Include="src\Panels\EditorContext.h" />
+    <ClInclude Include="src\Panels\ProjectSettingsPanel.h" />
+    <ClInclude Include="src\Panels\PropertiesPanel.h" />
+    <ClInclude Include="src\Panels\RendererSettingsPanel.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\Panels\SceneHierarchyPanel.h" />
+    <ClInclude Include="src\Panels\SceneViewport.h" />
+    <ClInclude Include="src\Panels\StatsPanel.h" />
+    <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\Utils\EditorTheme.h" />
+    <ClInclude Include="src\Utils\FileWatch.hpp" />
+    <ClInclude Include="src\Utils\UI.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -83,10 +124,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)\$(ProjectName)\</IntDir>
+    <ExternalIncludePath>..\TomatoEngine\vendor;..\TomatoEngine\vendor\box2d\include;..\TomatoEngine\vendor\DirectXTK\Inc;..\TomatoEngine\vendor\DirectXTex\DirectXTex;..\TomatoEngine\vendor\FMOD\include;..\TomatoEngine\vendor\fmt\include;..\TomatoEngine\vendor\icons\include;..\TomatoEngine\vendor\ImGuizmo;..\TomatoEngine\vendor\imgui;..\TomatoEngine\vendor\yaml-cpp\include;..\TomatoEngine\vendor\spdlog\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)\$(ProjectName)\</IntDir>
+    <ExternalIncludePath>..\TomatoEngine\vendor;..\TomatoEngine\vendor\box2d\include;..\TomatoEngine\vendor\DirectXTK\Inc;..\TomatoEngine\vendor\DirectXTex\DirectXTex;..\TomatoEngine\vendor\FMOD\include;..\TomatoEngine\vendor\fmt\include;..\TomatoEngine\vendor\icons\include;..\TomatoEngine\vendor\ImGuizmo;..\TomatoEngine\vendor\imgui;..\TomatoEngine\vendor\yaml-cpp\include;..\TomatoEngine\vendor\spdlog\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -124,12 +167,14 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>src;..\TomatoEngine\src;..\TomatoEngine\vendor;..\DeadCells\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\TomatoEngine\src;..\DeadCells\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -142,14 +187,16 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>src;..\TomatoEngine\src;..\TomatoEngine\vendor;..\DeadCells\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\TomatoEngine\src;..\DeadCells\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

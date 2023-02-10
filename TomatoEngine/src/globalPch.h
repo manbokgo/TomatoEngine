@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #define WIN32_LEAN_AND_MEAN
 #define NOMINMAX
@@ -6,34 +6,43 @@
 
 #include <d3d11.h>
 #include <d3dcompiler.h>
-#include <DirectXTex.h>
-#include <SimpleMath.h>
-
 #pragma comment(lib, "d3d11")
 #pragma comment(lib, "d3dcompiler")
 
-#include <FMOD/fmod.hpp>
-#include <JSON/json.hpp>
-using json = nlohmann::json;
 
-#include <fmt/core.h>
+#pragma warning(push)
+#pragma warning(disable : 4819 6285 26437 26450 26451 26498 4251 26800 26495 4275 26813)
+
+#include <DirectXTex.h>
+#include <SimpleMath.h>
+
+#include <fmod.hpp>
+#include <imgui.h>
+#include <ImGuizmo.h>
+#include <spdlog/spdlog.h>
+
+
+#pragma warning(pop)
+
 
 #include <filesystem>
+#include <fstream>
 #include <functional>
+#include <iostream>
 #include <list>
 #include <map>
 #include <memory>
+#include <numeric>
 #include <queue>
+#include <regex>
+#include <sstream>
 #include <stack>
 #include <string>
 #include <vector>
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <regex>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
+namespace fs = std::filesystem;
 
 #include <wrl.h>
 using Microsoft::WRL::ComPtr;
@@ -46,37 +55,39 @@ using std::array;
 using std::pair;
 using std::make_pair;
 using std::stack;
-
 using std::string;
 using std::string_view;
 using std::wstring;
 using std::wstring_view;
 
-using std::unique_ptr;
-using std::make_unique;
-
 using std::function;
-
 using std::swap;
 using std::numeric_limits;
 
-namespace fs = std::filesystem;
+template <typename T>
+using Scope = std::unique_ptr<T>;
+template <typename T>
+using Ref = std::shared_ptr<T>;
 
-using Vec2 = DirectX::SimpleMath::Vector2;
-using Vec3 = DirectX::SimpleMath::Vector3;
-using Vec4 = DirectX::SimpleMath::Vector4;
+template <typename T, typename ... Args>
+constexpr Scope<T> CreateScope(Args&& ...args)
+{
+    return std::make_unique<T>(std::forward<Args>(args)...);
+}
 
-#include "singleton.h"
-#include "define.h"
-#include "struct.h"
-#include "func.h"
+template <typename T, typename ... Args>
+constexpr Ref<T> CreateRef(Args&& ...args)
+{
+    return std::make_shared<T>(std::forward<Args>(args)...);
+}
 
+#include "tomato/Core/Macro.h"
 
-#ifdef NDEBUG
-# define ASSERT(e)    ( __assume(e) )
-#else
-# include <cassert>
-# define ASSERT(e)    ( assert(e) )
-#endif
+#include "tomato/Core/Log.h"
+#include "tomato/Core/Singleton.h"
+#include "tomato/Core/Vector.h"
 
-#define BIT(x) (1 << x)
+#include "tomato/Core/define.h"
+#include "tomato/Core/func.h"
+#include "tomato/Core/struct.h"
+

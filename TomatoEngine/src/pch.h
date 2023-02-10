@@ -1,5 +1,8 @@
-﻿#ifndef PCH_H
-#define PCH_H
+﻿#pragma once
 
+#include "globalPch.h"
 
-#endif //PCH_H
+namespace tomato::Allocation
+{
+	size_t GetSize();
+}

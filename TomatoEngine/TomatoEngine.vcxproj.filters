@@ -1,87 +1,473 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="vendor\ImGuizmo\GraphEditor.h">
-      <Filter>vendor\ImGuizmo</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\ImGuizmo\ImCurveEdit.h">
-      <Filter>vendor\ImGuizmo</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\ImGuizmo\ImGradient.h">
-      <Filter>vendor\ImGuizmo</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\ImGuizmo\ImGuizmo.h">
-      <Filter>vendor\ImGuizmo</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\ImGuizmo\ImSequencer.h">
-      <Filter>vendor\ImGuizmo</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\ImGuizmo\ImZoomSlider.h">
-      <Filter>vendor\ImGuizmo</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\imgui\imconfig.h">
-      <Filter>vendor\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\imgui\imgui.h">
-      <Filter>vendor\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\imgui\imgui_internal.h">
-      <Filter>vendor\ImGui</Filter>
-    </ClInclude>
     <ClInclude Include="src\pch.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\tomato\ImGui\ImGuiLayer.h">
+      <Filter>src\tomato\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\Timestep.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\Log.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\LayerStack.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\Layer.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\EntryPoint.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\Macro.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\Application.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\MouseCodes.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\KeyCodes.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\Input.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\ImGui\Modules\ExternalConsoleSink.h">
+      <Filter>src\tomato\ImGui\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Renderer\EditorCamera.h">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Renderer\RenderGraphData.h">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Math\Math.h">
+      <Filter>src\tomato\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\UUID.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Scene\EntitySerializer.h">
+      <Filter>src\tomato\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\misc\cpp\imgui_stdlib.h">
+      <Filter>src\tomato\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Renderer\Renderer3D.h">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Renderer\Renderer2D.h">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Renderer\MyRenderer.h">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Scene\Scene.h">
+      <Filter>src\tomato\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Scene\Entity.h">
+      <Filter>src\tomato\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Components\AnimatorComponent.h">
+      <Filter>src\tomato\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Components\CameraComponent.h">
+      <Filter>src\tomato\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Components\Collider2DComponent.h">
+      <Filter>src\tomato\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Components\Component.h">
+      <Filter>src\tomato\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Components\Light2DComponent.h">
+      <Filter>src\tomato\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Components\MeshRenderComponent.h">
+      <Filter>src\tomato\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Components\RenderComponent.h">
+      <Filter>src\tomato\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Components\TileMapComponent.h">
+      <Filter>src\tomato\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Components\TransformComponent.h">
+      <Filter>src\tomato\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Components\Rigidbody2DComponent.h">
+      <Filter>src\tomato\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Resources\AnimClip.h">
+      <Filter>src\tomato\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Resources\AnimController.h">
+      <Filter>src\tomato\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Resources\AnimState.h">
+      <Filter>src\tomato\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Resources\ComputeShader.h">
+      <Filter>src\tomato\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Resources\GraphicsShader.h">
+      <Filter>src\tomato\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Resources\Material.h">
+      <Filter>src\tomato\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Resources\Mesh.h">
+      <Filter>src\tomato\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Resources\PaintShader.h">
+      <Filter>src\tomato\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Resources\ParticleUpdateShader.h">
+      <Filter>src\tomato\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Resources\CPrefab.h">
+      <Filter>src\tomato\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Resources\Res.h">
+      <Filter>src\tomato\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Resources\Shader.h">
+      <Filter>src\tomato\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Resources\Sound.h">
+      <Filter>src\tomato\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Resources\Texture.h">
+      <Filter>src\tomato\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Renderer\StructuredBuffer.h">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Renderer\ConstBuffer.h">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Renderer\Device.h">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Components\ParticleSystemComponent.h">
+      <Filter>src\tomato\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Components\Script.h">
+      <Filter>src\tomato\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\CPathMgr.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\CResMgr.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\CTimeMgr.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\CEventMgr.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\CKeyMgr.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\func.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\define.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\Singleton.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\struct.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\globalPch.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\IName.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Components\AllComponents.h">
+      <Filter>src\tomato\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Utils\PlatformUtils.h">
+      <Filter>src\tomato\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Utils\StringUtils.h">
+      <Filter>src\tomato\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Components\SpriteRenderComponent.h">
+      <Filter>src\tomato\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Core\Vector.h">
+      <Filter>src\tomato\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="vendor\ImGuizmo\GraphEditor.cpp">
-      <Filter>vendor\ImGuizmo</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\ImGuizmo\ImCurveEdit.cpp">
-      <Filter>vendor\ImGuizmo</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\ImGuizmo\ImGradient.cpp">
-      <Filter>vendor\ImGuizmo</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\ImGuizmo\ImGuizmo.cpp">
-      <Filter>vendor\ImGuizmo</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\ImGuizmo\ImSequencer.cpp">
-      <Filter>vendor\ImGuizmo</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\imgui\imgui.cpp">
-      <Filter>vendor\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\imgui\imgui_demo.cpp">
-      <Filter>vendor\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\imgui\imgui_draw.cpp">
-      <Filter>vendor\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\imgui\imgui_tables.cpp">
-      <Filter>vendor\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\imgui\imgui_widgets.cpp">
-      <Filter>vendor\ImGui</Filter>
-    </ClCompile>
     <ClCompile Include="src\pch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\tomato\ImGui\ImGuiLayer.cpp">
+      <Filter>src\tomato\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Core\Log.cpp">
+      <Filter>src\tomato\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Core\LayerStack.cpp">
+      <Filter>src\tomato\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Core\Layer.cpp">
+      <Filter>src\tomato\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Core\Application.cpp">
+      <Filter>src\tomato\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Core\Input.cpp">
+      <Filter>src\tomato\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\ImGui\Modules\ExternalCommonSink.cpp">
+      <Filter>src\tomato\ImGui\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Renderer\EditorCamera.cpp">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Renderer\RenderGraphData.cpp">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Math\Math.cpp">
+      <Filter>src\tomato\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Core\UUID.cpp">
+      <Filter>src\tomato\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Scene\EntitySerializer.cpp">
+      <Filter>src\tomato\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\misc\cpp\imgui_stdlib.cpp">
+      <Filter>src\tomato\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Renderer\Renderer3D.cpp">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Renderer\Renderer2D.cpp">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Renderer\MyRenderer.cpp">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Scene\Scene.cpp">
+      <Filter>src\tomato\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Scene\Entity.cpp">
+      <Filter>src\tomato\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Components\AnimatorComponent.cpp">
+      <Filter>src\tomato\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Components\CameraComponent.cpp">
+      <Filter>src\tomato\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Components\Collider2DComponent.cpp">
+      <Filter>src\tomato\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Components\Component.cpp">
+      <Filter>src\tomato\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Components\Light2DComponent.cpp">
+      <Filter>src\tomato\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Components\MeshRenderComponent.cpp">
+      <Filter>src\tomato\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Components\RenderComponent.cpp">
+      <Filter>src\tomato\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Components\TileMapComponent.cpp">
+      <Filter>src\tomato\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Components\TransformComponent.cpp">
+      <Filter>src\tomato\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Components\Rigidbody2DComponent.cpp">
+      <Filter>src\tomato\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Resources\AnimController.cpp">
+      <Filter>src\tomato\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Resources\AnimState.cpp">
+      <Filter>src\tomato\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Resources\ComputeShader.cpp">
+      <Filter>src\tomato\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Resources\GraphicsShader.cpp">
+      <Filter>src\tomato\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Resources\Material.cpp">
+      <Filter>src\tomato\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Resources\Mesh.cpp">
+      <Filter>src\tomato\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Resources\PaintShader.cpp">
+      <Filter>src\tomato\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Resources\ParticleUpdateShader.cpp">
+      <Filter>src\tomato\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Resources\CPrefab.cpp">
+      <Filter>src\tomato\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Resources\Res.cpp">
+      <Filter>src\tomato\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Resources\Shader.cpp">
+      <Filter>src\tomato\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Resources\Sound.cpp">
+      <Filter>src\tomato\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Resources\Texture.cpp">
+      <Filter>src\tomato\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Resources\AnimClip.cpp">
+      <Filter>src\tomato\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Renderer\StructuredBuffer.cpp">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Renderer\ConstBuffer.cpp">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Renderer\Device.cpp">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Components\ParticleSystemComponent.cpp">
+      <Filter>src\tomato\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Components\Script.cpp">
+      <Filter>src\tomato\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Core\CResMgr.cpp">
+      <Filter>src\tomato\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Core\CResMgr_init.cpp">
+      <Filter>src\tomato\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Core\CTimeMgr.cpp">
+      <Filter>src\tomato\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Core\CEventMgr.cpp">
+      <Filter>src\tomato\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Core\CKeyMgr.cpp">
+      <Filter>src\tomato\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Core\CPathMgr.cpp">
+      <Filter>src\tomato\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Core\func.cpp">
+      <Filter>src\tomato\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Core\extern.cpp">
+      <Filter>src\tomato\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Components\SpriteRenderComponent.cpp">
+      <Filter>src\tomato\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="vendor">
-      <UniqueIdentifier>{6a13fab5-5366-4ed0-8da7-3e168e09259f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor\ImGui">
-      <UniqueIdentifier>{73eac626-8822-4c64-b30c-42c9019b206f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor\ImGuizmo">
-      <UniqueIdentifier>{0f60d7f8-813b-41a8-8c60-3371d7ca9cd5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src">
-      <UniqueIdentifier>{b1012200-0bac-4f3d-a559-ace359a5833f}</UniqueIdentifier>
+      <UniqueIdentifier>{82b7bf17-c5e3-4320-8ff4-13c3252057e5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Core">
-      <UniqueIdentifier>{2df6a1e5-1beb-462c-8160-310c792b9781}</UniqueIdentifier>
+    <Filter Include="src\tomato">
+      <UniqueIdentifier>{c443a235-ac82-4aca-b287-054f17d68162}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\tomato\Audio">
+      <UniqueIdentifier>{60ef857c-53e0-405c-b1b5-9528b8250e42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tomato\Components">
+      <UniqueIdentifier>{02fd94eb-d48b-4f04-9b25-d0989ed60d43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tomato\Events">
+      <UniqueIdentifier>{a8d49390-a220-4114-b9fc-8d8543427d8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tomato\ImGui">
+      <UniqueIdentifier>{2ebb92b7-ba86-4feb-b67f-f60ee22aef2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tomato\ImGui\Modules">
+      <UniqueIdentifier>{06af9ada-9fd6-4ee5-b4d9-ef63f1a33286}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tomato\Renderer">
+      <UniqueIdentifier>{e28bbcc1-419f-41bc-aebe-b6c28d433497}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tomato\Resources">
+      <UniqueIdentifier>{cff66dfe-188c-49fa-b878-1b183f812e3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tomato\Scene">
+      <UniqueIdentifier>{a356350e-069d-4de9-8e19-4fc9c3d0875a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tomato\Scripting">
+      <UniqueIdentifier>{38571948-13ed-46f1-8f68-664c325e102e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tomato\Utils">
+      <UniqueIdentifier>{a14d2602-56bb-461f-b66d-24cebd67542e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tomato\Core">
+      <UniqueIdentifier>{cae68bec-9cb8-45a9-95b9-feeb0f480eb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tomato\Math">
+      <UniqueIdentifier>{b08c787b-c6b3-44b7-9a8f-3e0ba8d37afb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tomato\Renderer\Shaders">
+      <UniqueIdentifier>{f7530bf7-9c16-459c-b061-598491a45682}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\bin\content\shader\tilemap.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
+    <None Include="..\bin\content\shader\compute.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
+    <None Include="..\bin\content\shader\debugdraw.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
+    <None Include="..\bin\content\shader\editor.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
+    <None Include="..\bin\content\shader\func.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
+    <None Include="..\bin\content\shader\MyShader.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
+    <None Include="..\bin\content\shader\particlerender.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
+    <None Include="..\bin\content\shader\particleupdate.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
+    <None Include="..\bin\content\shader\postprocess.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
+    <None Include="..\bin\content\shader\register.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
+    <None Include="..\bin\content\shader\std2d.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
+    <None Include="..\bin\content\shader\struct.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
+    <None Include="..\bin\content\shader\test.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

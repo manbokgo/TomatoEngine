@@ -4,5 +4,108 @@
     <Filter Include="src">
       <UniqueIdentifier>{19d7b9c8-77c6-42ce-8856-ffc5e190b3ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Utils">
+      <UniqueIdentifier>{40d9f783-f359-459e-a112-915a5e339f6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Panels">
+      <UniqueIdentifier>{62d0bbe8-7865-4893-946d-055fa596d6ff}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\CreateTestLevel.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EditorApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EditorLayer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Panels\BasePanel.cpp">
+      <Filter>src\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Panels\ConsolePanel.cpp">
+      <Filter>src\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Panels\ProjectSettingsPanel.cpp">
+      <Filter>src\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Panels\PropertiesPanel.cpp">
+      <Filter>src\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Panels\RendererSettingsPanel.cpp">
+      <Filter>src\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Panels\SceneHierarchyPanel.cpp">
+      <Filter>src\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Panels\SceneViewport.cpp">
+      <Filter>src\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Panels\StatsPanel.cpp">
+      <Filter>src\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Panels\AssetPanel.cpp">
+      <Filter>src\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\UI.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\EditorTheme.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\CreateTestLevel.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pch.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EditorLayer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Panels\BasePanel.h">
+      <Filter>src\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Panels\ConsolePanel.h">
+      <Filter>src\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Panels\EditorContext.h">
+      <Filter>src\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Panels\ProjectSettingsPanel.h">
+      <Filter>src\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Panels\PropertiesPanel.h">
+      <Filter>src\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Panels\RendererSettingsPanel.h">
+      <Filter>src\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Panels\SceneHierarchyPanel.h">
+      <Filter>src\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Panels\SceneViewport.h">
+      <Filter>src\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Panels\StatsPanel.h">
+      <Filter>src\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Panels\AssetPanel.h">
+      <Filter>src\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\EditorTheme.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\FileWatch.hpp">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\UI.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

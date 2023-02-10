@@ -19,46 +19,253 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\globalPch.h" />
     <ClInclude Include="src\pch.h" />
-    <ClInclude Include="vendor\ImGuizmo\GraphEditor.h" />
-    <ClInclude Include="vendor\ImGuizmo\ImCurveEdit.h" />
-    <ClInclude Include="vendor\ImGuizmo\ImGradient.h" />
-    <ClInclude Include="vendor\ImGuizmo\ImGuizmo.h" />
-    <ClInclude Include="vendor\ImGuizmo\ImSequencer.h" />
-    <ClInclude Include="vendor\ImGuizmo\ImZoomSlider.h" />
-    <ClInclude Include="vendor\imgui\imconfig.h" />
-    <ClInclude Include="vendor\imgui\imgui.h" />
-    <ClInclude Include="vendor\imgui\imgui_internal.h" />
+    <ClInclude Include="src\tomato\Components\AllComponents.h" />
+    <ClInclude Include="src\tomato\Components\AnimatorComponent.h" />
+    <ClInclude Include="src\tomato\Components\CameraComponent.h" />
+    <ClInclude Include="src\tomato\Components\Collider2DComponent.h" />
+    <ClInclude Include="src\tomato\Components\Component.h" />
+    <ClInclude Include="src\tomato\Components\Light2DComponent.h" />
+    <ClInclude Include="src\tomato\Components\MeshRenderComponent.h" />
+    <ClInclude Include="src\tomato\Components\ParticleSystemComponent.h" />
+    <ClInclude Include="src\tomato\Components\RenderComponent.h" />
+    <ClInclude Include="src\tomato\Components\Rigidbody2DComponent.h" />
+    <ClInclude Include="src\tomato\Components\Script.h" />
+    <ClInclude Include="src\tomato\Components\SpriteRenderComponent.h" />
+    <ClInclude Include="src\tomato\Components\TileMapComponent.h" />
+    <ClInclude Include="src\tomato\Components\TransformComponent.h" />
+    <ClInclude Include="src\tomato\Core\Application.h" />
+    <ClInclude Include="src\tomato\Core\Macro.h" />
+    <ClInclude Include="src\tomato\Core\CEventMgr.h" />
+    <ClInclude Include="src\tomato\Core\CKeyMgr.h" />
+    <ClInclude Include="src\tomato\Core\CPathMgr.h" />
+    <ClInclude Include="src\tomato\Core\CResMgr.h" />
+    <ClInclude Include="src\tomato\Core\CTimeMgr.h" />
+    <ClInclude Include="src\tomato\Core\define.h" />
+    <ClInclude Include="src\tomato\Core\EntryPoint.h" />
+    <ClInclude Include="src\tomato\Core\func.h" />
+    <ClInclude Include="src\tomato\Core\IName.h" />
+    <ClInclude Include="src\tomato\Core\Input.h" />
+    <ClInclude Include="src\tomato\Core\KeyCodes.h" />
+    <ClInclude Include="src\tomato\Core\Layer.h" />
+    <ClInclude Include="src\tomato\Core\LayerStack.h" />
+    <ClInclude Include="src\tomato\Core\Log.h" />
+    <ClInclude Include="src\tomato\Core\MouseCodes.h" />
+    <ClInclude Include="src\tomato\Core\Singleton.h" />
+    <ClInclude Include="src\tomato\Core\struct.h" />
+    <ClInclude Include="src\tomato\Core\Timestep.h" />
+    <ClInclude Include="src\tomato\Core\UUID.h" />
+    <ClInclude Include="src\tomato\Core\Vector.h" />
+    <ClInclude Include="src\tomato\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\tomato\ImGui\Modules\ExternalConsoleSink.h" />
+    <ClInclude Include="src\tomato\Math\Math.h" />
+    <ClInclude Include="src\tomato\Renderer\ConstBuffer.h" />
+    <ClInclude Include="src\tomato\Renderer\Device.h" />
+    <ClInclude Include="src\tomato\Renderer\StructuredBuffer.h" />
+    <ClInclude Include="src\tomato\Renderer\EditorCamera.h" />
+    <ClInclude Include="src\tomato\Renderer\MyRenderer.h" />
+    <ClInclude Include="src\tomato\Renderer\Renderer2D.h" />
+    <ClInclude Include="src\tomato\Renderer\Renderer3D.h" />
+    <ClInclude Include="src\tomato\Renderer\RenderGraphData.h" />
+    <ClInclude Include="src\tomato\Resources\AnimClip.h" />
+    <ClInclude Include="src\tomato\Resources\AnimController.h" />
+    <ClInclude Include="src\tomato\Resources\AnimState.h" />
+    <ClInclude Include="src\tomato\Resources\ComputeShader.h" />
+    <ClInclude Include="src\tomato\Resources\GraphicsShader.h" />
+    <ClInclude Include="src\tomato\Resources\Material.h" />
+    <ClInclude Include="src\tomato\Resources\Mesh.h" />
+    <ClInclude Include="src\tomato\Resources\PaintShader.h" />
+    <ClInclude Include="src\tomato\Resources\ParticleUpdateShader.h" />
+    <ClInclude Include="src\tomato\Resources\CPrefab.h" />
+    <ClInclude Include="src\tomato\Resources\Res.h" />
+    <ClInclude Include="src\tomato\Resources\Shader.h" />
+    <ClInclude Include="src\tomato\Resources\Sound.h" />
+    <ClInclude Include="src\tomato\Resources\Texture.h" />
+    <ClInclude Include="src\tomato\Scene\Entity.h" />
+    <ClInclude Include="src\tomato\Scene\EntitySerializer.h" />
+    <ClInclude Include="src\tomato\Scene\Scene.h" />
+    <ClInclude Include="src\tomato\Utils\PlatformUtils.h" />
+    <ClInclude Include="src\tomato\Utils\StringUtils.h" />
+    <ClInclude Include="vendor\imgui\misc\cpp\imgui_stdlib.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="vendor\ImGuizmo\GraphEditor.cpp" />
-    <ClCompile Include="vendor\ImGuizmo\ImCurveEdit.cpp" />
-    <ClCompile Include="vendor\ImGuizmo\ImGradient.cpp" />
-    <ClCompile Include="vendor\ImGuizmo\ImGuizmo.cpp" />
-    <ClCompile Include="vendor\ImGuizmo\ImSequencer.cpp" />
-    <ClCompile Include="vendor\imgui\imgui.cpp" />
-    <ClCompile Include="vendor\imgui\imgui_demo.cpp" />
-    <ClCompile Include="vendor\imgui\imgui_draw.cpp" />
-    <ClCompile Include="vendor\imgui\imgui_tables.cpp" />
-    <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\tomato\Components\AnimatorComponent.cpp" />
+    <ClCompile Include="src\tomato\Components\CameraComponent.cpp" />
+    <ClCompile Include="src\tomato\Components\Collider2DComponent.cpp" />
+    <ClCompile Include="src\tomato\Components\Component.cpp" />
+    <ClCompile Include="src\tomato\Components\Light2DComponent.cpp" />
+    <ClCompile Include="src\tomato\Components\MeshRenderComponent.cpp" />
+    <ClCompile Include="src\tomato\Components\ParticleSystemComponent.cpp" />
+    <ClCompile Include="src\tomato\Components\RenderComponent.cpp" />
+    <ClCompile Include="src\tomato\Components\Rigidbody2DComponent.cpp" />
+    <ClCompile Include="src\tomato\Components\Script.cpp" />
+    <ClCompile Include="src\tomato\Components\SpriteRenderComponent.cpp" />
+    <ClCompile Include="src\tomato\Components\TileMapComponent.cpp" />
+    <ClCompile Include="src\tomato\Components\TransformComponent.cpp" />
+    <ClCompile Include="src\tomato\Core\Application.cpp" />
+    <ClCompile Include="src\tomato\Core\CEventMgr.cpp" />
+    <ClCompile Include="src\tomato\Core\CKeyMgr.cpp" />
+    <ClCompile Include="src\tomato\Core\CPathMgr.cpp" />
+    <ClCompile Include="src\tomato\Core\CResMgr.cpp" />
+    <ClCompile Include="src\tomato\Core\CResMgr_init.cpp" />
+    <ClCompile Include="src\tomato\Core\CTimeMgr.cpp" />
+    <ClCompile Include="src\tomato\Core\extern.cpp" />
+    <ClCompile Include="src\tomato\Core\func.cpp" />
+    <ClCompile Include="src\tomato\Core\Input.cpp" />
+    <ClCompile Include="src\tomato\Core\Layer.cpp" />
+    <ClCompile Include="src\tomato\Core\LayerStack.cpp" />
+    <ClCompile Include="src\tomato\Core\Log.cpp" />
+    <ClCompile Include="src\tomato\Core\UUID.cpp" />
+    <ClCompile Include="src\tomato\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\tomato\ImGui\Modules\ExternalCommonSink.cpp" />
+    <ClCompile Include="src\tomato\Math\Math.cpp" />
+    <ClCompile Include="src\tomato\Renderer\ConstBuffer.cpp" />
+    <ClCompile Include="src\tomato\Renderer\Device.cpp" />
+    <ClCompile Include="src\tomato\Renderer\StructuredBuffer.cpp" />
+    <ClCompile Include="src\tomato\Renderer\EditorCamera.cpp" />
+    <ClCompile Include="src\tomato\Renderer\MyRenderer.cpp" />
+    <ClCompile Include="src\tomato\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="src\tomato\Renderer\Renderer3D.cpp" />
+    <ClCompile Include="src\tomato\Renderer\RenderGraphData.cpp" />
+    <ClCompile Include="src\tomato\Resources\AnimClip.cpp" />
+    <ClCompile Include="src\tomato\Resources\AnimController.cpp" />
+    <ClCompile Include="src\tomato\Resources\AnimState.cpp" />
+    <ClCompile Include="src\tomato\Resources\ComputeShader.cpp" />
+    <ClCompile Include="src\tomato\Resources\GraphicsShader.cpp" />
+    <ClCompile Include="src\tomato\Resources\Material.cpp" />
+    <ClCompile Include="src\tomato\Resources\Mesh.cpp" />
+    <ClCompile Include="src\tomato\Resources\PaintShader.cpp" />
+    <ClCompile Include="src\tomato\Resources\ParticleUpdateShader.cpp" />
+    <ClCompile Include="src\tomato\Resources\CPrefab.cpp" />
+    <ClCompile Include="src\tomato\Resources\Res.cpp" />
+    <ClCompile Include="src\tomato\Resources\Shader.cpp" />
+    <ClCompile Include="src\tomato\Resources\Sound.cpp" />
+    <ClCompile Include="src\tomato\Resources\Texture.cpp" />
+    <ClCompile Include="src\tomato\Scene\Entity.cpp" />
+    <ClCompile Include="src\tomato\Scene\EntitySerializer.cpp" />
+    <ClCompile Include="src\tomato\Scene\Scene.cpp" />
+    <ClCompile Include="vendor\imgui\misc\cpp\imgui_stdlib.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\box2d\build\src\box2d.vcxproj">
       <Project>{2c0c0b1b-2a02-3a37-b041-9533d108f0df}</Project>
     </ProjectReference>
+    <ProjectReference Include="vendor\DirectXTex\DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
+      <Project>{371b9fa9-4c90-4ac6-a123-aced756d6c77}</Project>
+    </ProjectReference>
     <ProjectReference Include="vendor\DirectXTK\DirectXTK_Desktop_2022_Win10.vcxproj">
       <Project>{e0b52ae7-e160-4d32-bf3f-910b785e5a8e}</Project>
     </ProjectReference>
-    <ProjectReference Include="vendor\fmt\build\fmt.vcxproj">
-      <Project>{b3ac8c04-83ce-3328-ab2e-d2fba32e712c}</Project>
+    <ProjectReference Include="vendor\ImGuizmo\build\ImGuizmo.vcxproj">
+      <Project>{b9ef546b-1250-4840-8c78-d624f4a5de70}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\imgui\build\ImGui.vcxproj">
+      <Project>{c8f89aa1-73b1-48e6-914e-1cdf8f8ee6e3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\spdlog\build\spdlog.vcxproj">
+      <Project>{a0f85006-ff76-302c-9b16-7be9d0b00843}</Project>
     </ProjectReference>
     <ProjectReference Include="vendor\yaml-cpp\build\yaml-cpp.vcxproj">
       <Project>{b15eff5b-c327-3c77-8bf4-40c344e694a1}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\bin\content\shader\compute.fx">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\bin\content\shader\debugdraw.fx">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\bin\content\shader\editor.fx">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\bin\content\shader\func.fx">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\bin\content\shader\MyShader.fx">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\bin\content\shader\particlerender.fx">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\bin\content\shader\particleupdate.fx">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\bin\content\shader\postprocess.fx">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\bin\content\shader\register.fx">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\bin\content\shader\std2d.fx">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\bin\content\shader\struct.fx">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\bin\content\shader\test.fx">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\bin\content\shader\tilemap.fx">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <FileType>Document</FileType>
+    </None>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -117,12 +324,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)\$(ProjectName)\</IntDir>
-    <ExternalIncludePath>vendor\box2d\include;vendor\DirectXTK\Inc;vendor\FMOD\include;vendor\fmt\include;vendor\icons\include;vendor\ImGuizmo;vendor\imgui;vendor\yaml-cpp\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>vendor;vendor\box2d\include;vendor\DirectXTK\Inc;vendor\DirectXTex\DirectXTex;vendor\FMOD\include;vendor\fmt\include;vendor\icons\include;vendor\ImGuizmo;vendor\imgui;vendor\yaml-cpp\include;vendor\spdlog\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)\$(ProjectName)\</IntDir>
-    <ExternalIncludePath>vendor\box2d\include;vendor\DirectXTK\Inc;vendor\FMOD\include;vendor\fmt\include;vendor\icons\include;vendor\ImGuizmo;vendor\imgui;vendor\yaml-cpp\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>vendor;vendor\box2d\include;vendor\DirectXTK\Inc;vendor\DirectXTex\DirectXTex;vendor\FMOD\include;vendor\fmt\include;vendor\icons\include;vendor\ImGuizmo;vendor\imgui;vendor\yaml-cpp\include;vendor\spdlog\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

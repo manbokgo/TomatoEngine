@@ -19,12 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CPlayerScript.cpp" />
+    <ClCompile Include="src\pch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\CPlayerScript.h" />
+    <ClInclude Include="src\pch.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\TomatoEngine\TomatoEngine.vcxproj">
       <Project>{75e98b45-5df6-4767-8336-0ca8ac4d96fe}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\DeadCells.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -83,10 +88,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)\$(ProjectName)\</IntDir>
+    <ExternalIncludePath>..\TomatoEngine\vendor;..\TomatoEngine\vendor\box2d\include;..\TomatoEngine\vendor\DirectXTK\Inc;..\TomatoEngine\vendor\DirectXTex\DirectXTex;..\TomatoEngine\vendor\FMOD\include;..\TomatoEngine\vendor\fmt\include;..\TomatoEngine\vendor\icons\include;..\TomatoEngine\vendor\ImGuizmo;..\TomatoEngine\vendor\imgui;..\TomatoEngine\vendor\yaml-cpp\include;..\TomatoEngine\vendor\spdlog\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)\$(ProjectName)\</IntDir>
+    <ExternalIncludePath>..\TomatoEngine\vendor;..\TomatoEngine\vendor\box2d\include;..\TomatoEngine\vendor\DirectXTK\Inc;..\TomatoEngine\vendor\DirectXTex\DirectXTex;..\TomatoEngine\vendor\FMOD\include;..\TomatoEngine\vendor\fmt\include;..\TomatoEngine\vendor\icons\include;..\TomatoEngine\vendor\ImGuizmo;..\TomatoEngine\vendor\imgui;..\TomatoEngine\vendor\yaml-cpp\include;..\TomatoEngine\vendor\spdlog\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
