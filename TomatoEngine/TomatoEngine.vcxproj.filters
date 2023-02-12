@@ -58,13 +58,7 @@
     <ClInclude Include="vendor\imgui\misc\cpp\imgui_stdlib.h">
       <Filter>src\tomato\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\tomato\Renderer\Renderer3D.h">
-      <Filter>src\tomato\Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="src\tomato\Renderer\Renderer2D.h">
-      <Filter>src\tomato\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\tomato\Renderer\MyRenderer.h">
       <Filter>src\tomato\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\tomato\Scene\Scene.h">
@@ -89,9 +83,6 @@
       <Filter>src\tomato\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\tomato\Components\MeshRenderComponent.h">
-      <Filter>src\tomato\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\tomato\Components\RenderComponent.h">
       <Filter>src\tomato\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\tomato\Components\TileMapComponent.h">
@@ -208,6 +199,15 @@
     <ClInclude Include="src\tomato\Core\Vector.h">
       <Filter>src\tomato\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\tomato\Components\Light3DComponent.h">
+      <Filter>src\tomato\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Components\RenderComponent.h">
+      <Filter>src\tomato\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tomato\Renderer\Renderer3D.h">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\pch.cpp">
@@ -252,13 +252,7 @@
     <ClCompile Include="vendor\imgui\misc\cpp\imgui_stdlib.cpp">
       <Filter>src\tomato\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\tomato\Renderer\Renderer3D.cpp">
-      <Filter>src\tomato\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="src\tomato\Renderer\Renderer2D.cpp">
-      <Filter>src\tomato\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tomato\Renderer\MyRenderer.cpp">
       <Filter>src\tomato\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\tomato\Scene\Scene.cpp">
@@ -283,9 +277,6 @@
       <Filter>src\tomato\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\tomato\Components\MeshRenderComponent.cpp">
-      <Filter>src\tomato\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tomato\Components\RenderComponent.cpp">
       <Filter>src\tomato\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\tomato\Components\TileMapComponent.cpp">
@@ -381,6 +372,15 @@
     <ClCompile Include="src\tomato\Components\SpriteRenderComponent.cpp">
       <Filter>src\tomato\Components</Filter>
     </ClCompile>
+    <ClCompile Include="src\tomato\Components\Light3DComponent.cpp">
+      <Filter>src\tomato\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Components\RenderComponent.cpp">
+      <Filter>src\tomato\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tomato\Renderer\Renderer3D.cpp">
+      <Filter>src\tomato\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -442,9 +442,6 @@
     <None Include="..\bin\content\shader\editor.fx">
       <Filter>src\tomato\Renderer\Shaders</Filter>
     </None>
-    <None Include="..\bin\content\shader\func.fx">
-      <Filter>src\tomato\Renderer\Shaders</Filter>
-    </None>
     <None Include="..\bin\content\shader\MyShader.fx">
       <Filter>src\tomato\Renderer\Shaders</Filter>
     </None>
@@ -457,16 +454,22 @@
     <None Include="..\bin\content\shader\postprocess.fx">
       <Filter>src\tomato\Renderer\Shaders</Filter>
     </None>
-    <None Include="..\bin\content\shader\register.fx">
-      <Filter>src\tomato\Renderer\Shaders</Filter>
-    </None>
-    <None Include="..\bin\content\shader\std2d.fx">
-      <Filter>src\tomato\Renderer\Shaders</Filter>
-    </None>
     <None Include="..\bin\content\shader\struct.fx">
       <Filter>src\tomato\Renderer\Shaders</Filter>
     </None>
     <None Include="..\bin\content\shader\test.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
+    <None Include="..\bin\content\shader\std3d.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
+    <None Include="..\bin\content\shader\register.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
+    <None Include="..\bin\content\shader\func.fx">
+      <Filter>src\tomato\Renderer\Shaders</Filter>
+    </None>
+    <None Include="..\bin\content\shader\std2d.fx">
       <Filter>src\tomato\Renderer\Shaders</Filter>
     </None>
   </ItemGroup>

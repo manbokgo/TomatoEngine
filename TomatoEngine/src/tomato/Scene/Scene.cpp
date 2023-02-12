@@ -12,7 +12,8 @@
 #include "tomato/Components/Rigidbody2DComponent.h"
 #include "tomato/Components/TransformComponent.h"
 #include "tomato/Renderer/EditorCamera.h"
-#include "tomato/Renderer/MyRenderer.h"
+#include "tomato/Renderer/Renderer3D.h"
+#include "tomato/Renderer/Renderer2D.h"
 #include "tomato/Renderer/RenderGraphData.h"
 #include "tomato/Scene/Entity.h"
 
@@ -157,22 +158,25 @@ namespace tomato
         return CreateRef<Scene>(*this);
     }
 
-    Entity*    Scene::CreateEntity(const std::string& name)
+    Entity* Scene::CreateEntity(const std::string& name)
     {
         return CreateEntityWithUUID(UUID(), name);
     }
 
-    Entity*    Scene::CreateEntityWithUUID(UUID uuid, const std::string& name)
+    Entity* Scene::CreateEntityWithUUID(UUID uuid, const std::string& name)
     {
         auto newEntity = new Entity;
         newEntity->m_UUID = uuid;
+        newEntity->m_Name = name;
+        newEntity->m_Scene = this;
+
         m_Objects.push_back(newEntity);
         return newEntity;
     }
 
-    void       Scene::DestroyEntity(Entity* entity) {}
+    void Scene::DestroyEntity(Entity* entity) {}
 
-    Entity*    Scene::Duplicate(Entity* entity)
+    Entity* Scene::Duplicate(Entity* entity)
     {
         auto newEntity = entity->Clone();
         newEntity->m_UUID = UUID();
@@ -180,9 +184,9 @@ namespace tomato
         return newEntity;
     }
 
-    Entity*    Scene::GetEntity(UUID uuid)
+    Entity* Scene::GetEntity(UUID uuid)
     {
-        for (const auto & object : m_Objects)
+        for (const auto& object : m_Objects)
         {
             if (object->m_UUID == uuid)
             {
@@ -256,8 +260,8 @@ namespace tomato
                     Vec3 lerpedTranslationRotation = Vec3::Lerp(rb->PreviousTranslationRotation,
                         rb->TranslationRotation,
                         interpolationFactor);
-                    tc->m_Translation.x = lerpedTranslationRotation.x;
-                    tc->m_Translation.y = lerpedTranslationRotation.y;
+                    tc->m_Position.x = lerpedTranslationRotation.x;
+                    tc->m_Position.y = lerpedTranslationRotation.y;
                     tc->m_Rotation.z = lerpedTranslationRotation.z;
                 }
                 else
@@ -267,8 +271,8 @@ namespace tomato
                     rb->PreviousTranslationRotation = rb->TranslationRotation;
                     rb->TranslationRotation = Vec3{position.x, position.y, body->GetAngle()};
 
-                    tc->m_Translation.x = rb->TranslationRotation.x;
-                    tc->m_Translation.y = rb->TranslationRotation.y;
+                    tc->m_Position.x = rb->TranslationRotation.x;
+                    tc->m_Position.y = rb->TranslationRotation.y;
                     tc->m_Rotation.z = rb->TranslationRotation.z;
                 }
             }
@@ -331,7 +335,7 @@ namespace tomato
                     cameraData.View = XMMatrixInverse(nullptr, cameraEntity->GetWorldTransform());
                     cameraData.Projection = cameraEntity->Camera()->GetProjection();
                     cameraData.ViewProjection = cameraData.View * cameraData.Projection;
-                    cameraData.Position = cameraEntity->Transform()->m_Translation;
+                    cameraData.Position = cameraEntity->Transform()->m_Position;
                 }
             }
             else
@@ -349,6 +353,11 @@ namespace tomato
 
     void Scene::OnUpdateEditor(Timestep ts, const Ref<RenderGraphData>& renderGraphData, const EditorCamera& camera)
     {
+        for (const auto& gameObject : m_Objects)
+        {
+            gameObject->OnLateUpdate();
+        }
+
         #pragma region VFX
         /*{
                 auto particleSystemView = m_Registry.view<TransformComponent, ParticleSystemComponent>();
@@ -389,23 +398,23 @@ namespace tomato
             skylight = Entity(*view.begin(), this);*/
         }
 
-        /*Renderer3D::BeginScene(cameraData, skylight, std::move(lights));
-        // Meshes
+        // MeshRenderer::BeginScene(cameraData, skylight, std::move(lights));
+        Renderer3D::BeginScene(cameraData);
         {
-                auto view = m_Registry.view<MeshComponent>();
-            Renderer3D::ReserveMeshes(view.size());
-            for (auto&& [entity, meshComponent] : view.each())
+            for (const auto& e : m_Objects)
             {
-                if (meshComponent.MeshGeometry && meshComponent.MeshGeometry->GetSubmeshCount() != 0)
+                MeshRenderComponent* rc = e->GetComponent<MeshRenderComponent>();
+                if (!rc)
                 {
-                    ASSERT(meshComponent.MeshGeometry->GetSubmeshCount() > meshComponent.SubmeshIndex, "Trying to access submesh index that does not exist!")
-                        Renderer3D::SubmitMesh(Entity(entity, this).GetWorldTransform(), meshComponent.MeshGeometry->GetSubmesh(meshComponent.SubmeshIndex), meshComponent.CullMode);
+                    continue;
                 }
+
+                Renderer3D::Draw(rc);
             }
         }
-        Renderer3D::EndScene(renderGraphData);*/
+        Renderer3D::EndScene(renderGraphData);
 
-        MyRenderer::BeginScene(cameraData);
+        Renderer2D::BeginScene(cameraData);
         {
             /*auto particleSystemView = m_Registry.view<ParticleSystemComponent>();
         for (auto&& [e, psc] : particleSystemView.each())
@@ -414,16 +423,16 @@ namespace tomato
         {
             for (const auto& e : m_Objects)
             {
-                RenderComponent* rc = e->GetRenderComponent();
+                SpriteRenderComponent* rc = e->GetComponent<SpriteRenderComponent>();
                 if (!rc)
                 {
                     continue;
                 }
 
-                MyRenderer::Draw(rc);
+                Renderer2D::Draw(rc);
             }
         }
-        MyRenderer::EndScene(renderGraphData);
+        Renderer2D::EndScene(renderGraphData);
     }
 
 
@@ -450,7 +459,7 @@ namespace tomato
                     {
                         CreateRigidbody2D(e, tc, rb);
                         rb->PreviousTranslationRotation = rb->TranslationRotation = Vec3{
-                            tc->m_Translation.x, tc->m_Translation.y, tc->m_Rotation.z
+                            tc->m_Position.x, tc->m_Position.y, tc->m_Rotation.z
                         };
                     }
                 }
@@ -501,7 +510,8 @@ namespace tomato
     void Scene::OnViewportResize(uint32_t width, uint32_t height) {}
     void Scene::SortForSprites() {}
 
-    void Scene::CreateRigidbody2D(Entity* entity, const TransformComponent* transform, Rigidbody2DComponent* component) const
+    void Scene::CreateRigidbody2D(Entity*               entity, const TransformComponent* transform,
+                                  Rigidbody2DComponent* component) const
     {
         if (!m_PhysicsWorld2D)
         {
@@ -518,7 +528,7 @@ namespace tomato
         def.bullet = component->Continuous;
         def.gravityScale = component->GravityScale;
 
-        def.position.Set(transform->m_Translation.x, transform->m_Translation.y);
+        def.position.Set(transform->m_Position.x, transform->m_Position.y);
         def.angle = transform->m_Rotation.z;
 
         b2Body* rb = m_PhysicsWorld2D->CreateBody(&def);
@@ -546,7 +556,7 @@ namespace tomato
     }
 
 
-    void Scene::CreateBoxCollider2D(Entity*      entity, const TransformComponent* transform, const Rigidbody2DComponent* rb,
+    void Scene::CreateBoxCollider2D(Entity* entity, const TransformComponent* transform, const Rigidbody2DComponent* rb,
                                     Collider2DComponent* component) const
     {
         if (!m_PhysicsWorld2D)
@@ -566,7 +576,7 @@ namespace tomato
         fixtureDef.restitution = component->Restitution;
         fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(entity);
 
-        auto layer = entity->Layer;
+        auto layer = entity->m_Layer;
         auto collisionMaskIt = LayerCollisionMask.find(layer);
         if (collisionMaskIt == LayerCollisionMask.end())
         {

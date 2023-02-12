@@ -27,7 +27,7 @@ namespace tomato
     struct AnimTransition
     {
         vector<AnimCondition> Conditions;
-        AnimState*           DestState;
+        AnimState*           DestState = nullptr;
         bool                  IsExit = false;
     };
 

@@ -3,18 +3,16 @@
 
 namespace tomato
 {
-    class SpriteRenderComponent : public RenderComponent
+    class SpriteRenderComponent final : public RenderComponent
     {
     public:
         SpriteRenderComponent() = default;
         ~SpriteRenderComponent() override = default;
 
-        void render() override;
-
-        CLONE(SpriteRenderComponent);
-
     private:
-        Vec4 m_Color;
         Ref<Texture> m_Texture;
+
+        Vec4 m_Color = Vec4::One;
+        int  m_SortingOrder = 0;
     };
 }

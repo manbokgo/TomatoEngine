@@ -27,8 +27,12 @@ x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
-[Bb]in/
+
+**/[Bb]in/content/*
+!**/[Bb]in/content/shader
+
 [Bb]in-[Ii]nt/
+
 [Oo]bj/
 [Oo]ut/
 [Ll]og/

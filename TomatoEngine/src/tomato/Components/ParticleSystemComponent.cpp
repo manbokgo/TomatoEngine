@@ -27,13 +27,13 @@ namespace tomato
         , m_ParticleShare(nullptr)
         , m_WorldSpawn(1)
     {
-        SetMesh(CResMgr::GetInst()->FindRes<Mesh>(L"PointMesh"));
-        SetSharedMaterial(CResMgr::GetInst()->FindRes<Material>(L"ParticleRenderMtrl"));
+        // m_Mesh = CResMgr::GetInst()->FindRes<Mesh>(L"PointMesh");
+        m_Material = CResMgr::GetInst()->FindRes<Material>(L"ParticleRenderMtrl");
         m_UpdateCS = CResMgr::GetInst()->FindRes<ParticleUpdateShader>(L"ParticleUpdateShader");
 
         //GetCurMaterial()->SetTexParam(TEX_PARAM::TEX_0, CResMgr::GetInst()->FindRes<Texture>(L"texture\\particle\\smokeparticle.png"));
         //GetCurMaterial()->SetTexParam(TEX_PARAM::TEX_0, CResMgr::GetInst()->FindRes<Texture>(L"texture\\particle\\CartoonSmoke.png"));	
-        GetCurMaterial()->SetTexParam(eTexParam::Tex0, CResMgr::GetInst()->FindRes<Texture>(L"texture\\particle\\Bubbles50px.png"));
+        GetMaterial()->SetTexParam(eTexParam::Tex0, CResMgr::GetInst()->FindRes<Texture>(L"texture\\particle\\Bubbles50px.png"));
 
 
         // 구조화버퍼 생성
@@ -103,15 +103,15 @@ namespace tomato
         m_ParticleBuffer->UpdateData(16, ePipelineStage::VS | ePipelineStage::GS | ePipelineStage::PS);
 
         // 재질 업데이트
-        GetCurMaterial()->SetScalarParam(eScalarParam::Int1, &m_WorldSpawn);
-        GetCurMaterial()->SetScalarParam(eScalarParam::Vec4_0, &m_vStartScale);
-        GetCurMaterial()->SetScalarParam(eScalarParam::Vec4_1, &m_vEndScale);
-        GetCurMaterial()->SetScalarParam(eScalarParam::Vec4_2, &m_vStartColor);
-        GetCurMaterial()->SetScalarParam(eScalarParam::Vec4_3, &m_vEndColor);
-        GetCurMaterial()->Bind();
+        GetMaterial()->SetScalarParam(eScalarParam::Int1, &m_WorldSpawn);
+        GetMaterial()->SetScalarParam(eScalarParam::Vec4_0, &m_vStartScale);
+        GetMaterial()->SetScalarParam(eScalarParam::Vec4_1, &m_vEndScale);
+        GetMaterial()->SetScalarParam(eScalarParam::Vec4_2, &m_vStartColor);
+        GetMaterial()->SetScalarParam(eScalarParam::Vec4_3, &m_vEndColor);
+        GetMaterial()->Bind();
 
         // 렌더링
-        GetMesh()->RenderInstanced(m_iMaxCount);
+        // GetMesh()->RenderInstanced(m_iMaxCount);
 
         // 클리어
         m_ParticleBuffer->Clear();

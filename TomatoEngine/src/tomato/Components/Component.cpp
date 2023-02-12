@@ -16,21 +16,4 @@ namespace tomato
     GET_OTHER_COMPONENT_DEFINITION(Light2D);
     GET_OTHER_COMPONENT_DEFINITION(ParticleSystem);
     GET_OTHER_COMPONENT_DEFINITION(TileMap);
-
-    Component::Component()
-        : m_GameObject(nullptr)
-        , m_bActive(true)
-    {
-    }
-
-    Component::Component(const Component& other)
-        : m_GameObject(nullptr)
-        , m_bActive(other.m_bActive)
-    {
-    }
-
-    Component::~Component()
-    {
-    }
-    
 }

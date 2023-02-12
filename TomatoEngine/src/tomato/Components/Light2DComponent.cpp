@@ -28,7 +28,7 @@ namespace tomato
 
 
         m_Info.vWorldPos = { Transform()->GetWorldPos(), 0.f };
-        m_Info.vWorldDir = { Transform()->GetWorldDir(eDir::Front), 0.f };
+        m_Info.vWorldDir = { Transform()->GetWorldDir(eDir::Forward), 0.f };
 
         // TODO 카메라에 레지스터
         // CRenderMgr::GetInst()->RegisterLight2D(this);

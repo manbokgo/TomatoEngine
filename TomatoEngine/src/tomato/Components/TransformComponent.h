@@ -5,71 +5,63 @@ namespace tomato
 {
     class TransformComponent final : public Component
     {
-        friend class SceneViewport;
         friend class Scene;
+        friend class SceneViewport;
+        friend class PropertiesPanel;
 
     public:
-        const Matrix& GetWorldMat() const { return m_matWorld; }
+        TransformComponent();
+        ~TransformComponent() override;
 
-    public:
-        Vec3 m_Translation;
-        Vec3 m_Scale;
-        Vec3 m_Rotation;
-
-        Vec3 m_ScaleModifier; // PixelsPerUnit for 2D
-
-
-        Vec3   m_vRelativeDir[(UINT)eDir::End];
-        Vec3   m_vWorldDir[(UINT)eDir::End];
-        Matrix m_matWorld;
-
-        bool m_bIgnParentScale;
-
-    public:
-        void MoveRelativePos(Vec3 _vPos) { m_Translation += _vPos; }
-        void MoveRelativePosX(float x) { m_Translation.x += x; }
-        void MoveRelativePosY(float y) { m_Translation.y += y; }
-        void MoveRelativePosZ(float z) { m_Translation.z += z; }
-
-        void SetRelativePos(Vec3 _vPos) { m_Translation = _vPos; }
-        void SetRelativeScale(Vec3 _vScale) { m_Scale = _vScale; }
-        void SetRelativeRotation(Vec3 _vRotation) { m_Rotation = _vRotation; }
-
-        void SetRelativePos(float _x, float _y, float _z) { m_Translation = Vec3(_x, _y, _z); }
-        void SetRelativeScale(float _x, float _y, float _z) { m_Scale = Vec3(_x, _y, _z); }
-        void SetRelativeRotation(float _x, float _y, float _z) { m_Rotation = Vec3(_x, _y, _z); }
-
-        [[nodiscard]] Vec3 GetScaleModifier() const { return m_ScaleModifier; }
-        void               SetScaleModifier(Vec3 scaleModifier) { m_ScaleModifier = scaleModifier; }
-
-
-        Vec3 GetRelativePos() { return m_Translation; }
-        Vec3 GetWorldPos() { return m_matWorld.Translation(); }
-
-        Vec3 GetRelativeScale() { return m_Scale; }
-        Vec3 GetWorldScale();
-
-        Vec3 GetRelativeRotation() { return m_Rotation; }
-        Vec3 GetRelativeDir(eDir _eType) { return m_vRelativeDir[(UINT)_eType]; }
-        Vec3 GetWorldDir(eDir _eType) { return m_vWorldDir[(UINT)_eType]; }
-
-        void SetIgnoreParentScale(bool _bIgn) { m_bIgnParentScale = _bIgn; }
-        bool IsIgnoreParentScale() { return m_bIgnParentScale; }
-
-
-    public:
-        virtual void OnUpdate() override;
-        virtual void OnLateUpdate() override;
+        void OnUpdate() override;
+        void OnLateUpdate() override;
 
         void UpdateData();
 
     public:
-        virtual void SaveToFile(FILE* _File);
-        virtual void LoadFromFile(FILE* _File);
+        void MoveRelativePos(Vec3 pos) { m_Position += pos; }
+        void MoveRelativePosX(float x) { m_Position.x += x; }
+        void MoveRelativePosY(float y) { m_Position.y += y; }
+        void MoveRelativePosZ(float z) { m_Position.z += z; }
 
-        CLONE(TransformComponent);
-    public:
-        TransformComponent();
-        virtual ~TransformComponent();
+        void SetRelativePos(Vec3 pos) { m_Position = pos; }
+        void SetRelativeScale(Vec3 scale) { m_Scale = scale; }
+        void SetRelativeRotation(Vec3 rotation) { m_Rotation = rotation; }
+
+        void SetScaleModifier(Vec3 scaleModifier) { m_ScaleModifier = scaleModifier; }
+
+        void SetIgnoreParentScale(bool ignore) { m_bIgnoreParentScale = ignore; }
+
+
+        [[nodiscard]] const Matrix& GetWorldMat() const { return m_WorldMat; }
+
+        [[nodiscard]] Vec3 GetRelativePos() const { return m_Position; }
+        [[nodiscard]] Vec3 GetWorldPos() const { return m_WorldMat.Translation(); }
+
+        [[nodiscard]] Vec3 GetRelativeScale() const { return m_Scale; }
+        [[nodiscard]] Vec3 GetWorldScale() const;
+
+        [[nodiscard]] Vec3 GetRelativeRotation() const { return m_Rotation; }
+
+        [[nodiscard]] Vec3 GetRelativeDir(eDir type) const { return m_RelativeDir[(UINT)type]; }
+        [[nodiscard]] Vec3 GetWorldDir(eDir type) const { return m_WorldDir[(UINT)type]; }
+
+        [[nodiscard]] Vec3 GetScaleModifier() const { return m_ScaleModifier; }
+
+        [[nodiscard]] bool IsIgnoreParentScale() const { return m_bIgnoreParentScale; }
+
+    private:
+        Vec3 m_Position = Vec3::Zero;
+        Vec3 m_Scale = Vec3::One;
+        Vec3 m_Rotation = Vec3::Zero;
+
+        Vec3 m_ScaleModifier = Vec3::One; // PixelsPerUnit for 2D
+
+        Vec3 m_RelativeDir[(UINT)eDir::End];
+        Vec3 m_WorldDir[(UINT)eDir::End];
+
+        Matrix m_WorldMat = Matrix::Identity;
+
+        bool m_bIgnoreParentScale = false;
     };
 }

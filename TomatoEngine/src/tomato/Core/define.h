@@ -201,7 +201,7 @@ namespace tomato
     {
         Right,
         Up,
-        Front,
+        Forward,
         End,
     };
 

@@ -3,7 +3,7 @@
 
 namespace tomato
 {
-    class Light2DComponent : public Component
+    class Light2DComponent final : public Component
     {
     private:
         tLightInfo m_Info; // ±¤¿ø Á¤º¸
@@ -12,7 +12,7 @@ namespace tomato
         const tLightInfo& GetLightInfo() { return m_Info; }
 
         void SetLightColor(Vec3 _vColor) { m_Info.vDiff = { _vColor, 0.f }; }
-        void SetLightEmbient(Vec3 _vColor) { m_Info.vEmb = { _vColor, 0.f }; }
+        void SetLightEmbient(Vec3 _vColor) { m_Info.vAmb = { _vColor, 0.f }; }
 
         void SetLightType(eLightType _eType) { m_Info.iLightType = _eType; }
 

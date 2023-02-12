@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 #include "tomato/Components/AllComponents.h"
-#include "tomato/Components/Component.h"
 #include "tomato/Components/RenderComponent.h"
+#include "tomato/Components/Component.h"
 #include "tomato/Components/Script.h"
 
 #define GET_COMPONENT(classname) [[nodiscard]] classname##Component* classname() const { return GetComponent<classname##Component>(); }
@@ -19,8 +19,8 @@ namespace tomato
         friend class PropertiesPanel;
 
     public:
-        Entity();
-        ~Entity();
+        Entity() = default;
+        ~Entity() = default;
         CLONE(Entity);
 
         void OnUpdate();
@@ -34,7 +34,6 @@ namespace tomato
 
         [[nodiscard]] Entity*                     GetParent() const { return m_Parent; }
         [[nodiscard]] Matrix                      GetWorldTransform() const;
-        [[nodiscard]] RenderComponent*            GetRenderComponent() const { return m_RenderComponent; }
         [[nodiscard]] const vector<Entity*>&      GetChildren() const { return m_Children; }
         [[nodiscard]] const string&               GetName() { return m_Name; }
         [[nodiscard]] const UUID&                 GetUUID() const { return m_UUID; }
@@ -51,10 +50,10 @@ namespace tomato
         void OnCollisionEnter2D(const Collision2DData& collisionData);
 
         template <typename T, typename... Args>
-        std::enable_if_t<std::is_base_of_v<Component, T>, T*> AddComponent(Args&&...args)
+        std::enable_if_t<std::is_base_of_v<Component, T>, T*> AddComponent(Args&&... args)
         {
             constexpr bool isRenderComponent = std::is_base_of_v<RenderComponent, T>;
-            if (isRenderComponent)
+            if constexpr (isRenderComponent)
             {
                 ASSERT(!m_RenderComponent);
             }
@@ -66,9 +65,9 @@ namespace tomato
             comp->m_GameObject = this;
             m_Components[hashCode] = comp;
 
-            if (isRenderComponent)
+            if constexpr (isRenderComponent)
             {
-                m_RenderComponent = static_cast<RenderComponent*>(comp);
+                m_RenderComponent = (RenderComponent*)comp;
             }
 
             return static_cast<T*>(comp);
@@ -86,7 +85,7 @@ namespace tomato
             }
 
             constexpr bool isRenderComponent = std::is_base_of_v<RenderComponent, T>;
-            if (isRenderComponent)
+            if constexpr (isRenderComponent)
             {
                 ASSERT(m_RenderComponent == iter->second);
                 m_RenderComponent = nullptr;
@@ -114,7 +113,7 @@ namespace tomato
 
 
         template <typename T, typename... Args>
-        std::enable_if_t<std::is_base_of_v<Script, T>, T*> AddScript(Args&&...args)
+        std::enable_if_t<std::is_base_of_v<Script, T>, T*> AddScript(Args&&... args)
         {
             const HashCode hashCode = typeid(T).hash_code();
             ASSERT(!m_Scripts.count(hashCode));
@@ -180,9 +179,6 @@ namespace tomato
         GET_COMPONENT(TileMap);
         GET_COMPONENT(Rigidbody2D);
 
-    public:
-        uint16_t Layer = BIT(1);
-
     private:
         UUID   m_UUID;
         string m_Name;
@@ -193,6 +189,8 @@ namespace tomato
 
         Entity*         m_Parent;
         vector<Entity*> m_Children;
+
+        uint16_t m_Layer = BIT(1);
 
         map<HashCode, Component*> m_Components;
         map<HashCode, Script*>    m_Scripts;

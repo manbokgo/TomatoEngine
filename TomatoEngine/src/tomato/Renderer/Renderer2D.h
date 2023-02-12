@@ -1,48 +1,51 @@
-#pragma once
+﻿#pragma once
 
 namespace tomato
 {
-	class Texture2D;
-	struct RenderGraphData;
+    class StructuredBuffer;
+    class SpriteRenderComponent;
+    struct RenderGraphData;
+    struct CameraData;
 
-	class Renderer2D
-	{
-	public:
-		static void Init();
-		static void Shutdown();
-		
-		static void BeginScene(const Matrix& viewProjection);
-		static void EndScene(const Ref<RenderGraphData>& renderGraphData);
-		static void Flush();
+    class Renderer2D
+    {
+    public:
+        Renderer2D() = default;
+        ~Renderer2D() = default;
 
-		//Primitives
-		static void DrawQuad(const Vec2& position, float rotation, const Vec2& size, const Ref<Texture2D>& texture = nullptr, const Vec4& tintColor = Vec4(1.0f), float tilingFactor = 1.0f);
-		static void DrawQuad(const Vec3& position, float rotation, const Vec2& size, const Ref<Texture2D>& texture = nullptr, const Vec4& tintColor = Vec4(1.0f), float tilingFactor = 1.0f);
+        static void Init();
+        static void Shutdown();
 
-		static void DrawQuad(const Matrix& transform, const Vec4& color);
-		static void DrawQuad(const Matrix& transform, const Ref<Texture2D>& texture = nullptr, const Vec4& tintColor = Vec4(1.0f), float tilingFactor = 1.0f);
+        static void BeginScene(const CameraData& cameraData);
+        static void EndScene(const Ref<RenderGraphData>& renderGraphData);
+        static void Flush();
 
-		static void DrawLine(const Vec3& p0, const Vec3& p1, const Vec4& color);
+        static void Draw(SpriteRenderComponent* renderComponent);
 
-		static void DrawRect(const Vec3& position, const Vec2& size, const Vec4& color);
-		static void DrawRect(const Matrix& transform, const Vec4& color);
+        // Stats
+        struct Statistics
+        {
+            uint32_t DrawCalls = 0;
+        };
 
-		// Stats
-		struct Statistics
-		{
-			uint32_t DrawCalls = 0;
-			uint32_t QuadCount = 0;
+        static void ResetStats();
+        [[nodiscard]] static Statistics GetStats();
 
-			[[nodiscard]] uint32_t GetTotalVertexCount() const { return QuadCount * 4; }
-			[[nodiscard]] uint32_t GetTotalIndexCount() const { return QuadCount * 6; }
-			[[nodiscard]] uint32_t GetTotalTriangleCount() const { return QuadCount * 2; }
-		};
+    private:
+        struct Renderer2DConstant
+        {
+            Matrix                                 WorldMat;
+            array<SpriteFrm, (UINT)eTexParam::End> SpriteInfo;
+        };
 
-		static void ResetStats();
-		[[nodiscard]] static Statistics GetStats();
-	private:
-		static void StartBatch();
-		static void NextBatch();
-	};
+        struct Renderer2DData
+        {
+            vector<SpriteRenderComponent*> RenderComponents;
+            vector<Renderer2DConstant>     ConstantData;
+            Renderer2D::Statistics         Stats;
+        };
+
+        static Renderer2DData    s_Data;
+        static StructuredBuffer* s_StructuredBuffer;
+    };
 }
-

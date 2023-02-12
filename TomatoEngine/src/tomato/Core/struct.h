@@ -8,6 +8,13 @@ namespace tomato
         Vec3 vPos;
         Vec4 vColor;
         Vec2 vUV;
+
+        Vec3 vTangent;
+        Vec3 vBinormal;
+        Vec3 vNormal;
+
+        // Vec4 vWeights;
+        // Vec4 vIndices;
     };
 
 
@@ -22,7 +29,7 @@ namespace tomato
     {
         Vec4 vDiff; // ³­¹Ý»ç ±¤
         Vec4 vSpec; // ¹Ý»ç±¤ °è¼ö
-        Vec4 vEmb;  // È¯°æ±¤
+        Vec4 vAmb;  // È¯°æ±¤
 
         Vec4       vWorldPos;  // ±¤¿ø ¿ùµå À§Ä¡
         Vec4       vWorldDir;  // ±¤¿øÀÇ ¹æÇâ

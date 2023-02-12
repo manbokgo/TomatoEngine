@@ -16,7 +16,7 @@
 #include "Panels/StatsPanel.h"
 #include "tomato/Core/Application.h"
 #include "CreateTestLevel.h"
-#include "tomato/Renderer/MyRenderer.h"
+#include "tomato/Renderer/Renderer2D.h"
 
 #include "Utils/EditorTheme.h"
 #include "Utils/UI.h"
@@ -39,11 +39,10 @@ namespace tomato
         EditorTheme::SetStyle();
         EditorTheme::ApplyTheme();
 
-
-        CreateTestLevel();
-
         m_ActiveScene = CreateRef<Scene>();
         m_EditorScene = m_ActiveScene;
+
+        CreateTestLevel(m_ActiveScene);
 
         m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 
@@ -63,7 +62,7 @@ namespace tomato
 
     void EditorLayer::OnUpdate([[maybe_unused]] Timestep ts)
     {
-        MyRenderer::ResetStats();
+        Renderer2D::ResetStats();
 
         // Remove unused scene viewports
         for (auto it = m_Viewports.begin(); it != m_Viewports.end(); ++it)

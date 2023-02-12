@@ -27,6 +27,7 @@
     <ClInclude Include="src\tomato\Components\Collider2DComponent.h" />
     <ClInclude Include="src\tomato\Components\Component.h" />
     <ClInclude Include="src\tomato\Components\Light2DComponent.h" />
+    <ClInclude Include="src\tomato\Components\Light3DComponent.h" />
     <ClInclude Include="src\tomato\Components\MeshRenderComponent.h" />
     <ClInclude Include="src\tomato\Components\ParticleSystemComponent.h" />
     <ClInclude Include="src\tomato\Components\RenderComponent.h" />
@@ -62,11 +63,10 @@
     <ClInclude Include="src\tomato\Math\Math.h" />
     <ClInclude Include="src\tomato\Renderer\ConstBuffer.h" />
     <ClInclude Include="src\tomato\Renderer\Device.h" />
+    <ClInclude Include="src\tomato\Renderer\Renderer3D.h" />
     <ClInclude Include="src\tomato\Renderer\StructuredBuffer.h" />
     <ClInclude Include="src\tomato\Renderer\EditorCamera.h" />
-    <ClInclude Include="src\tomato\Renderer\MyRenderer.h" />
     <ClInclude Include="src\tomato\Renderer\Renderer2D.h" />
-    <ClInclude Include="src\tomato\Renderer\Renderer3D.h" />
     <ClInclude Include="src\tomato\Renderer\RenderGraphData.h" />
     <ClInclude Include="src\tomato\Resources\AnimClip.h" />
     <ClInclude Include="src\tomato\Resources\AnimController.h" />
@@ -99,6 +99,7 @@
     <ClCompile Include="src\tomato\Components\Collider2DComponent.cpp" />
     <ClCompile Include="src\tomato\Components\Component.cpp" />
     <ClCompile Include="src\tomato\Components\Light2DComponent.cpp" />
+    <ClCompile Include="src\tomato\Components\Light3DComponent.cpp" />
     <ClCompile Include="src\tomato\Components\MeshRenderComponent.cpp" />
     <ClCompile Include="src\tomato\Components\ParticleSystemComponent.cpp" />
     <ClCompile Include="src\tomato\Components\RenderComponent.cpp" />
@@ -126,11 +127,10 @@
     <ClCompile Include="src\tomato\Math\Math.cpp" />
     <ClCompile Include="src\tomato\Renderer\ConstBuffer.cpp" />
     <ClCompile Include="src\tomato\Renderer\Device.cpp" />
+    <ClCompile Include="src\tomato\Renderer\Renderer3D.cpp" />
     <ClCompile Include="src\tomato\Renderer\StructuredBuffer.cpp" />
     <ClCompile Include="src\tomato\Renderer\EditorCamera.cpp" />
-    <ClCompile Include="src\tomato\Renderer\MyRenderer.cpp" />
     <ClCompile Include="src\tomato\Renderer\Renderer2D.cpp" />
-    <ClCompile Include="src\tomato\Renderer\Renderer3D.cpp" />
     <ClCompile Include="src\tomato\Renderer\RenderGraphData.cpp" />
     <ClCompile Include="src\tomato\Resources\AnimClip.cpp" />
     <ClCompile Include="src\tomato\Resources\AnimController.cpp" />
@@ -175,6 +175,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\bin\content\shader\std3d.fx">
+      <FileType>Document</FileType>
+    </None>
     <None Include="..\bin\content\shader\compute.fx">
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
@@ -237,6 +240,8 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
       <FileType>Document</FileType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ObjectFileOutput>
     </None>
     <None Include="..\bin\content\shader\std2d.fx">
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
@@ -244,6 +249,7 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
       <FileType>Document</FileType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS_Std2D</EntryPointName>
     </None>
     <None Include="..\bin\content\shader\struct.fx">
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>

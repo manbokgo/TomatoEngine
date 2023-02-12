@@ -6,7 +6,8 @@
 #include "CResMgr.h"
 #include "CTimeMgr.h"
 #include "tomato/Renderer/Device.h"
-#include "tomato/Renderer/MyRenderer.h"
+#include "tomato/Renderer/Renderer2D.h"
+#include "tomato/Renderer/Renderer3D.h"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -44,7 +45,8 @@ namespace tomato
             ASSERT(false);
         }
 
-        MyRenderer::Init();
+        Renderer2D::Init();
+        Renderer3D::Init();
         CPathMgr::GetInst()->Init();
         CKeyMgr::GetInst()->init();
         CTimeMgr::GetInst()->init();
@@ -72,7 +74,8 @@ namespace tomato
     {
         delete m_LayerStack;
 
-        MyRenderer::Shutdown();
+        Renderer2D::Shutdown();
+        Renderer3D::Shutdown();
         /*
         ScriptEngine::Shutdown();
         AudioEngine::Shutdown();

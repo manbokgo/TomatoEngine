@@ -31,7 +31,7 @@ namespace tomato
                     break;
                 case EditorContextType::Entity:
                     {
-                        Entity* selectedEntity = m_Context.As<Entity>();
+                        Entity* selectedEntity = *m_Context.As<Entity*>();
                         if (selectedEntity && selectedEntity->GetScene())
                         {
                             DrawComponents(selectedEntity);
@@ -439,7 +439,7 @@ namespace tomato
             ImGui::SetNextItemWidth(regionX - framePadding.x);
 
             const char* current;
-            const auto& it = Scene::LayerCollisionMask.find(entity->Layer);
+            const auto& it = Scene::LayerCollisionMask.find(entity->m_Layer);
             if (it != Scene::LayerCollisionMask.end())
             {
                 current = it->second.Name.c_str();
@@ -457,7 +457,7 @@ namespace tomato
                     if (ImGui::Selectable(Scene::LayerCollisionMask.at(layer).Name.c_str(), isSelected))
                     {
                         current = Scene::LayerCollisionMask.at(layer).Name.c_str();
-                        entity->Layer = layer;
+                        entity->m_Layer = layer;
                     }
 
                     if (isSelected)
@@ -477,7 +477,7 @@ namespace tomato
                 return;
             }
 
-            UI::DrawVec3Control("Translation", component.m_Translation);
+            UI::DrawVec3Control("Translation", component.m_Position);
 
             Vec3 rotation = ToDegree(component.m_Rotation);
             // TODO Bool로 변경 확인

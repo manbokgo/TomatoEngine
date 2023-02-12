@@ -38,7 +38,7 @@ namespace tomato
 
     public:
         virtual void OnLateUpdate() override;
-        virtual void render() override;
+        void render();
 
 
     public:

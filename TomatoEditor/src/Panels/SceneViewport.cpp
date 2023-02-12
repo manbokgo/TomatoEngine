@@ -178,7 +178,6 @@ namespace tomato
 
 	void SceneViewport::OnImGuiRender()
 	{
-		
 		ImVec2 windowPadding = ImGui::GetStyle().WindowPadding;
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
@@ -197,10 +196,8 @@ namespace tomato
 
 			ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 			m_ViewportSize = Vec2{ viewportPanelSize.x, viewportPanelSize.y };
-
-			// ·»´õÅ¸°Ù º¹»ç¹Þ±â
-			CONTEXT->CopyResource(m_RenderGraphData->SRView->GetTex2D().Get(), m_RenderGraphData->RenderPassTarget->GetTex2D().Get());
-			auto textureID = m_RenderGraphData->SRView->GetSRV();
+			
+			const auto& textureID = m_RenderGraphData->RenderTarget->GetSRV();
 			ImGui::Image(textureID.Get(), ImVec2{ m_ViewportSize.x, m_ViewportSize.y });
 
 			if (m_SceneHierarchyPanel)
@@ -231,7 +228,7 @@ namespace tomato
 						{
 							// Entity Transform
 							auto tc = selectedEntity->Transform();
-						    Matrix transform = tc->m_matWorld;
+						    Matrix transform = tc->m_WorldMat;
 
 							// Snapping
 							const bool snap = ImGui::IsKeyDown(ImGuiKey_LeftCtrl);
@@ -250,15 +247,17 @@ namespace tomato
 							if (ImGuizmo::IsUsing())
 							{
 								auto parent = selectedEntity->GetParent();
-								const Matrix& parentWorldTransform = parent ? parent->Transform()->m_matWorld : Matrix::Identity;
-								Vec3 translation, scale;
+								const Matrix& parentWorldTransform = parent ? parent->Transform()->m_WorldMat : Matrix::Identity;
+
+								Vec3 translation;
+							    Vec3 scale;
 								Quaternion rotation;
-								// if (Math::DecomposeTransform(glm::inverse(parentWorldTransform) * transform, translation, rotation, scale))
-								Matrix parentInv = XMMatrixInverse(nullptr, parentWorldTransform);
-								(transform * parentInv).Decompose(scale, rotation, translation);
-								tc->m_Translation = translation;
-								tc->m_Rotation = rotation.ToEuler();
-								tc->m_Scale = scale / tc->m_ScaleModifier;
+								if ((transform * parentWorldTransform.Invert()).Decompose(scale, rotation, translation))
+								{
+									tc->m_Position = translation;
+									tc->m_Rotation = rotation.ToEuler();
+									tc->m_Scale = scale / tc->m_ScaleModifier;
+								}
 							}
 						}
 					}

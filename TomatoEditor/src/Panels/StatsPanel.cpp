@@ -5,7 +5,7 @@
 
 #include "../Utils/UI.h"
 #include "tomato/Renderer/Device.h"
-#include "tomato/Renderer/MyRenderer.h"
+#include "tomato/Renderer/Renderer2D.h"
 
 namespace tomato
 {
@@ -36,7 +36,7 @@ namespace tomato
 
 		if (OnBegin())
 		{
-		    const auto stats = MyRenderer::GetStats();
+		    const auto stats = Renderer2D::GetStats();
 		    ImGui::Text("Draw Calls: %d", stats.DrawCalls);
 			
 			if (UI::BeginProperties())

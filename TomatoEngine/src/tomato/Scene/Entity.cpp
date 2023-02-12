@@ -5,10 +5,14 @@
 
 namespace tomato
 {
-    Entity::Entity() {}
-    Entity::~Entity() {}
     void Entity::OnUpdate() {}
-    void Entity::OnLateUpdate() {}
+    void Entity::OnLateUpdate()
+    {
+        for (const auto & [hashCode, component] : m_Components)
+        {
+            component->OnLateUpdate();
+        }
+    }
 
     void Entity::AddChild(Entity* child)
     {

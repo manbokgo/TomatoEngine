@@ -8,19 +8,18 @@ namespace tomato
         friend class Entity;
 
     public:
-        Component();
-        Component(const Component& other);
-        virtual ~Component();
+        Component() = default;
+        virtual ~Component() = default;
 
-        virtual void begin() {}
+        virtual void Start() {}
         virtual void OnUpdate() {}
         virtual void OnLateUpdate() {}
 
         void Activate() { m_bActive = true; }
         void Deactivate() { m_bActive = false; }
 
-        [[nodiscard]] bool    IsActive() const { return m_bActive; }
         [[nodiscard]] Entity* GetGameObject() const { return m_GameObject; }
+        [[nodiscard]] bool    IsActive() const { return m_bActive; }
 
         GET_OTHER_COMPONENT_DECLARE(Transform);
         GET_OTHER_COMPONENT_DECLARE(MeshRender);
@@ -33,7 +32,7 @@ namespace tomato
         GET_OTHER_COMPONENT_DECLARE(TileMap);
 
     private:
-        Entity* m_GameObject;
-        bool    m_bActive;
+        Entity* m_GameObject = nullptr;
+        bool    m_bActive = true;
     };
 }

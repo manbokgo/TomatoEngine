@@ -12,11 +12,10 @@ namespace tomato
 
 	struct RenderGraphData
 	{
-		Ref<Texture> RenderPassTarget;
-		Ref<Texture> DepthStecilTarget;
-		Ref<Texture> SRView;
-
 		RenderGraphData(uint32_t width, uint32_t height);
-        void Resize(uint32_t width, uint32_t height);
+		void Resize(uint32_t width, uint32_t height);
+
+		Ref<Texture> RenderTarget;
+		Ref<Texture> DepthStencil;
     };
 }

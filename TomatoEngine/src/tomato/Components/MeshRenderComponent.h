@@ -3,17 +3,18 @@
 
 namespace tomato
 {
+    class Mesh;
     class MeshRenderComponent final : public RenderComponent
     {
     public:
-        void OnUpdate() override;
-        void OnLateUpdate() override;
-        void render() override;
+        MeshRenderComponent() = default;
+        ~MeshRenderComponent() override = default;
 
-        CLONE(MeshRenderComponent);
+        void SetMesh(const Ref<Mesh>& mesh) { m_Mesh = mesh; }
 
-    public:
-        MeshRenderComponent();
-        ~MeshRenderComponent() override;
+        [[nodiscard]] const Ref<Mesh>& GetMesh() const { return m_Mesh; }
+
+    private:
+        Ref<Mesh> m_Mesh;
     };
 }

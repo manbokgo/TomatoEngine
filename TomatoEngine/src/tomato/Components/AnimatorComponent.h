@@ -15,7 +15,7 @@ namespace tomato
 
         CLONE(AnimatorComponent);
 
-        void begin() override;
+        void Start() override;
 
         void OnUpdate() override;
         void progressIndex(const vector<AnimationFrm>& frames);

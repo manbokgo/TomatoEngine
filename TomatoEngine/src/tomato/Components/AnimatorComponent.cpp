@@ -21,7 +21,7 @@ namespace tomato
 
     AnimatorComponent::~AnimatorComponent() {}
 
-    void AnimatorComponent::begin()
+    void AnimatorComponent::Start()
     {
         MyVec4 a(4, 4, 4, 4);
         MyVec4 b(3,3,3,3);
@@ -202,7 +202,7 @@ namespace tomato
         }
 
 
-        const auto& curMaterial = GetGameObject()->MeshRender()->GetCurMaterial();
+        const auto& curMaterial = GetGameObject()->MeshRender()->GetMaterial();
         curMaterial->SetTexParam(eTexParam::Tex0, frames[m_CurIdx].SpriteTexture, frames[m_CurIdx].Sprite);
         curMaterial->SetTexParam(eTexParam::Tex1, frames[m_CurIdx].NormalTexture, frames[m_CurIdx].Sprite);
     }
