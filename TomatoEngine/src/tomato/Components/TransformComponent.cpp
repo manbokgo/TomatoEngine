@@ -86,6 +86,10 @@ namespace tomato
             m_WorldDir[(UINT)eDir::Forward] = m_WorldMat.Backward();
             m_WorldDir[(UINT)eDir::Forward].Normalize();
         }
+        else
+        {
+            m_WorldDir = m_RelativeDir;
+        }
     }
 
 

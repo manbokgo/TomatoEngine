@@ -10,7 +10,7 @@ namespace tomato
 
     void CameraComponent::SetPerspective(float verticalFov, float nearClip, float farClip)
     {
-        m_ProjectionType = ProjectionType::Perspective;
+        m_ProjectionType = eProjectionType::Perspective;
 
         m_PerspectiveFOV = verticalFov;
         m_PerspectiveNear = nearClip;
@@ -21,7 +21,7 @@ namespace tomato
 
     void CameraComponent::SetOrthographic(float size, float nearClip, float farClip)
     {
-        m_ProjectionType = ProjectionType::Orthographic;
+        m_ProjectionType = eProjectionType::Orthographic;
 
         m_OrthographicSize = size;
         m_OrthographicNear = nearClip;
@@ -38,7 +38,7 @@ namespace tomato
 
     void CameraComponent::RecalculateProjection()
     {
-        if (m_ProjectionType == ProjectionType::Perspective)
+        if (m_ProjectionType == eProjectionType::Perspective)
         {
             m_Projection = XMMatrixPerspectiveFovLH(m_PerspectiveFOV, m_AspectRatio, m_PerspectiveNear,
                 m_PerspectiveFar);

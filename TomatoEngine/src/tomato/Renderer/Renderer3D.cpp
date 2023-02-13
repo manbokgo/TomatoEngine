@@ -14,9 +14,10 @@
 
 namespace tomato
 {
-    Renderer3D::MeshRendererData    Renderer3D::s_Data;
-    StructuredBuffer* Renderer3D::s_StructuredBuffer;
+    Renderer3D::Renderer3D() {}
 
+    Renderer3D::~Renderer3D() {}
+    
     void Renderer3D::Init()
     {
         s_Data.RenderComponents.reserve(16);
@@ -24,26 +25,40 @@ namespace tomato
 
         s_StructuredBuffer = new StructuredBuffer();
         s_StructuredBuffer->Create(sizeof(Renderer3DConstant), 16, eSBType::SRVOnly, nullptr, true);
+
+        s_Light3DBuffer = new StructuredBuffer();
+        s_Light3DBuffer->Create(sizeof(tLightInfo), 2, eSBType::SRVOnly, nullptr, true);
     }
 
     void Renderer3D::Shutdown()
     {
+        // TODO Unique
         delete s_StructuredBuffer;
+        delete s_Light3DBuffer;
     }
 
-    void Renderer3D::BeginScene(const CameraData& cameraData)
+    void Renderer3D::BeginScene(const CameraData& cameraData, vector<tLightInfo>&& lights)
     {
         s_Data.RenderComponents.clear();
         s_Data.ConstantData.clear();
+        s_Data.Lights = std::move(lights);
 
         g_transform.matView = cameraData.View.Transpose();
         g_transform.matProj = cameraData.Projection.Transpose();
         g_transform.matVP = cameraData.ViewProjection.Transpose();
 
-        ConstBuffer* pCB = Device::GetInst()->GetConstBuffer(eCBType::Transform);
+        static ConstBuffer* pCB = Device::GetInst()->GetConstBuffer(eCBType::Transform);
 
         pCB->SetData(&g_transform);
         pCB->UpdateData(ePipelineStage::AllStage);
+        
+        s_Light3DBuffer->SetData(s_Data.Lights.data(), (UINT)s_Data.Lights.size());
+        s_Light3DBuffer->UpdateData(14, ePipelineStage::AllStage);
+        g_global.iLight3DCount = (UINT)s_Data.Lights.size();
+
+        static ConstBuffer* pGlobalCB = Device::GetInst()->GetConstBuffer(eCBType::Global);
+        pGlobalCB->SetData(&g_global);
+        pGlobalCB->UpdateData(ePipelineStage::AllStage);
     }
 
     void Renderer3D::EndScene(const Ref<RenderGraphData>& renderGraphData)

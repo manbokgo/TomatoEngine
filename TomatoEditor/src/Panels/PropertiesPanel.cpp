@@ -502,10 +502,10 @@ namespace tomato
             int         projectionType = static_cast<int>(component.GetProjectionType());
             if (UI::Property("Projection", projectionType, projectionTypeStrings, 2))
             {
-                component.SetProjectionType(static_cast<CameraComponent::ProjectionType>(projectionType));
+                component.SetProjectionType(static_cast<CameraComponent::eProjectionType>(projectionType));
             }
 
-            if (component.GetProjectionType() == CameraComponent::ProjectionType::Perspective)
+            if (component.GetProjectionType() == CameraComponent::eProjectionType::Perspective)
             {
                 float verticalFov = XMConvertToDegrees(component.GetPerspectiveVerticalFOV());
                 if (UI::Property("Vertical FOV", verticalFov))
@@ -526,7 +526,7 @@ namespace tomato
                 }
             }
 
-            else if (component.GetProjectionType() == CameraComponent::ProjectionType::Orthographic)
+            else if (component.GetProjectionType() == CameraComponent::eProjectionType::Orthographic)
             {
                 float orthoSize = component.GetOrthographicSize();
                 if (UI::Property("Size", orthoSize))

@@ -4,6 +4,7 @@
 #include "tomato/Components/CameraComponent.h"
 #include "tomato/Components/Collider2DComponent.h"
 #include "tomato/Components/Light2DComponent.h"
+#include "tomato/Components/Light3DComponent.h"
 #include "tomato/Components/MeshRenderComponent.h"
 #include "tomato/Components/SpriteRenderComponent.h"
 #include "tomato/Components/ParticleSystemComponent.h"

@@ -45,7 +45,7 @@ namespace tomato
         void                  DestroyEntity(Entity* entity);
         Entity*               Duplicate(Entity* entity);
         [[nodiscard]] bool    HasEntity(UUID uuid) const;
-        [[nodiscard]] Entity* GetEntity(UUID uuid);
+        [[nodiscard]] Entity* GetEntity(UUID uuid) const;
         [[nodiscard]] bool    IsRunning() const { return m_IsRunning; }
 
         void OnUpdateRuntime([[maybe_unused]] Timestep ts, const Ref<RenderGraphData>& renderGraphData,

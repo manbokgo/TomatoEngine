@@ -46,7 +46,7 @@ namespace tomato
         }
 
         Renderer2D::Init();
-        Renderer3D::Init();
+        Renderer3D::GetInst()->Init();
         CPathMgr::GetInst()->Init();
         CKeyMgr::GetInst()->init();
         CTimeMgr::GetInst()->init();
@@ -75,7 +75,7 @@ namespace tomato
         delete m_LayerStack;
 
         Renderer2D::Shutdown();
-        Renderer3D::Shutdown();
+        Renderer3D::GetInst()->Shutdown();
         /*
         ScriptEngine::Shutdown();
         AudioEngine::Shutdown();

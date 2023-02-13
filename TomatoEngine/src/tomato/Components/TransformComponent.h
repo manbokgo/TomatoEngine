@@ -57,8 +57,8 @@ namespace tomato
 
         Vec3 m_ScaleModifier = Vec3::One; // PixelsPerUnit for 2D
 
-        Vec3 m_RelativeDir[(UINT)eDir::End];
-        Vec3 m_WorldDir[(UINT)eDir::End];
+        array<Vec3, (UINT)eDir::End> m_RelativeDir;
+        array<Vec3, (UINT)eDir::End> m_WorldDir;
 
         Matrix m_WorldMat = Matrix::Identity;
 

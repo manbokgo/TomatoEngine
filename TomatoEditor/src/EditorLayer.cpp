@@ -17,6 +17,7 @@
 #include "tomato/Core/Application.h"
 #include "CreateTestLevel.h"
 #include "tomato/Renderer/Renderer2D.h"
+#include "tomato/Renderer/Renderer3D.h"
 
 #include "Utils/EditorTheme.h"
 #include "Utils/UI.h"
@@ -63,34 +64,34 @@ namespace tomato
     void EditorLayer::OnUpdate([[maybe_unused]] Timestep ts)
     {
         Renderer2D::ResetStats();
+        Renderer3D::GetInst()->ResetStats();
 
-        // Remove unused scene viewports
-        for (auto it = m_Viewports.begin(); it != m_Viewports.end(); ++it)
         {
-            if (!it->get()->Showing)
+            // Remove unused scene viewports
+            for (auto it = m_Viewports.begin(); it != m_Viewports.end(); ++it)
             {
-                m_Viewports.erase(it);
-                break;
+                if (!it->get()->Showing)
+                {
+                    it = m_Viewports.erase(it);
+                }
             }
-        }
 
-        // Remove unused properties panels
-        for (auto it = m_Properties.begin(); it != m_Properties.end(); ++it)
-        {
-            if (!it->get()->Showing)
+            // Remove unused properties panels
+            for (auto it = m_Properties.begin(); it != m_Properties.end(); ++it)
             {
-                m_Properties.erase(it);
-                break;
+                if (!it->get()->Showing)
+                {
+                    it = m_Properties.erase(it);
+                }
             }
-        }
 
-        // // Remove unused asset panels
-        for (auto it = m_AssetPanels.begin(); it != m_AssetPanels.end(); ++it)
-        {
-            if (!it->get()->Showing)
+            // // Remove unused asset panels
+            for (auto it = m_AssetPanels.begin(); it != m_AssetPanels.end(); ++it)
             {
-                m_AssetPanels.erase(it);
-                break;
+                if (!it->get()->Showing)
+                {
+                    it = m_AssetPanels.erase(it);
+                }
             }
         }
 

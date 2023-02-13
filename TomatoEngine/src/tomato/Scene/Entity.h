@@ -175,6 +175,7 @@ namespace tomato
         GET_COMPONENT(Collider2D);
         GET_COMPONENT(Animator);
         GET_COMPONENT(Light2D);
+        GET_COMPONENT(Light3D);
         GET_COMPONENT(ParticleSystem);
         GET_COMPONENT(TileMap);
         GET_COMPONENT(Rigidbody2D);
@@ -182,18 +183,18 @@ namespace tomato
     private:
         UUID   m_UUID;
         string m_Name;
-        Scene* m_Scene;
+        Scene* m_Scene = nullptr;
 
-        bool m_bDead;
-        bool m_bEnabled;
+        bool m_bDead = false;
+        bool m_bEnabled = true;
 
-        Entity*         m_Parent;
+        Entity*         m_Parent = nullptr;
         vector<Entity*> m_Children;
 
         uint16_t m_Layer = BIT(1);
 
         map<HashCode, Component*> m_Components;
         map<HashCode, Script*>    m_Scripts;
-        RenderComponent*          m_RenderComponent;
+        RenderComponent*          m_RenderComponent = nullptr;
     };
 }

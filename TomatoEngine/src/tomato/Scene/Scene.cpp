@@ -8,6 +8,7 @@
 
 #include "tomato/Components/CameraComponent.h"
 #include "tomato/Components/Collider2DComponent.h"
+#include "tomato/Components/Light3DComponent.h"
 #include "tomato/Components/RenderComponent.h"
 #include "tomato/Components/Rigidbody2DComponent.h"
 #include "tomato/Components/TransformComponent.h"
@@ -165,7 +166,7 @@ namespace tomato
 
     Entity* Scene::CreateEntityWithUUID(UUID uuid, const std::string& name)
     {
-        auto newEntity = new Entity;
+        Entity* newEntity = new Entity;
         newEntity->m_UUID = uuid;
         newEntity->m_Name = name;
         newEntity->m_Scene = this;
@@ -178,13 +179,13 @@ namespace tomato
 
     Entity* Scene::Duplicate(Entity* entity)
     {
-        auto newEntity = entity->Clone();
+        Entity* newEntity = entity->Clone();
         newEntity->m_UUID = UUID();
         m_Objects.push_back(newEntity);
         return newEntity;
     }
 
-    Entity* Scene::GetEntity(UUID uuid)
+    Entity* Scene::GetEntity(UUID uuid) const
     {
         for (const auto& object : m_Objects)
         {
@@ -332,7 +333,7 @@ namespace tomato
             {
                 if (cameraEntity)
                 {
-                    cameraData.View = XMMatrixInverse(nullptr, cameraEntity->GetWorldTransform());
+                    cameraData.View = cameraEntity->GetWorldTransform().Invert();
                     cameraData.Projection = cameraEntity->Camera()->GetProjection();
                     cameraData.ViewProjection = cameraData.View * cameraData.Projection;
                     cameraData.Position = cameraEntity->Transform()->m_Position;
@@ -353,6 +354,7 @@ namespace tomato
 
     void Scene::OnUpdateEditor(Timestep ts, const Ref<RenderGraphData>& renderGraphData, const EditorCamera& camera)
     {
+        // TODO 임시
         for (const auto& gameObject : m_Objects)
         {
             gameObject->OnLateUpdate();
@@ -374,45 +376,38 @@ namespace tomato
             camera.GetPosition()
         };
 
-        // Vec3 a = XMVector3TransformCoord(Vec3(-1.f, 2.5f, 10.f), cameraData.View);
-        // Vec3 b = XMVector3TransformCoord(a, cameraData.Projection);
-        // Vec3 c = XMVector3TransformCoord(Vec3(-1.f, 2.5f, 10.f), cameraData.ViewProjection);
-        // auto d= Vec4::Transform(Vec4(-1.f, 2.5f, 10.f, 1.f), cameraData.ViewProjection);
-
         OnRender(renderGraphData, cameraData);
     }
 
     void Scene::OnRender(const Ref<RenderGraphData>& renderGraphData, const CameraData& cameraData)
     {
-        std::vector<Entity*> lights;
-        {
-            /*auto view = m_Registry.view<LightComponent>();
-        lights.reserve(view.size());
-        for (auto&& [entity, lc] : view.each())
-            lights.emplace_back(Entity*(entity, this));*/
-        }
-        Entity* skylight = {};
-        {
-            /*auto view = m_Registry.view<SkyLightComponent>();
-        if (!view.empty())
-            skylight = Entity(*view.begin(), this);*/
-        }
-
-        // MeshRenderer::BeginScene(cameraData, skylight, std::move(lights));
-        Renderer3D::BeginScene(cameraData);
+        std::vector<tLightInfo> lights;
         {
             for (const auto& e : m_Objects)
             {
-                MeshRenderComponent* rc = e->GetComponent<MeshRenderComponent>();
-                if (!rc)
+                if (Light3DComponent* lc = e->GetComponent<Light3DComponent>())
                 {
-                    continue;
+                    lights.push_back(lc->GetInfo());
                 }
-
-                Renderer3D::Draw(rc);
             }
         }
-        Renderer3D::EndScene(renderGraphData);
+
+        /*Entity* skylight = {};
+        {
+        }*/
+
+        // MeshRenderer::BeginScene(cameraData, skylight, std::move(lights));
+        Renderer3D::GetInst()->BeginScene(cameraData, std::move(lights));
+        {
+            for (const auto& e : m_Objects)
+            {
+                if (MeshRenderComponent* rc = e->GetComponent<MeshRenderComponent>())
+                {
+                    Renderer3D::GetInst()->Draw(rc);
+                }
+            }
+        }
+        Renderer3D::GetInst()->EndScene(renderGraphData);
 
         Renderer2D::BeginScene(cameraData);
         {
@@ -423,13 +418,10 @@ namespace tomato
         {
             for (const auto& e : m_Objects)
             {
-                SpriteRenderComponent* rc = e->GetComponent<SpriteRenderComponent>();
-                if (!rc)
+                if (SpriteRenderComponent* rc = e->GetComponent<SpriteRenderComponent>())
                 {
-                    continue;
+                    Renderer2D::Draw(rc);
                 }
-
-                Renderer2D::Draw(rc);
             }
         }
         Renderer2D::EndScene(renderGraphData);

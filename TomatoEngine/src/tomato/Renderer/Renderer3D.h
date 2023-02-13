@@ -7,20 +7,19 @@ namespace tomato
     struct RenderGraphData;
     struct CameraData;
 
-    class Renderer3D
+    class Renderer3D : public Singleton<Renderer3D>
     {
+        SINGLETON_CLASS(Renderer3D);
+
     public:
-        Renderer3D() = default;
-        ~Renderer3D() = default;
+        void Init();
+        void Shutdown();
 
-        static void Init();
-        static void Shutdown();
+        void BeginScene(const CameraData& cameraData, vector<tLightInfo>&& lights);
+        void EndScene(const Ref<RenderGraphData>& renderGraphData);
+        void Flush();
 
-        static void BeginScene(const CameraData& cameraData);
-        static void EndScene(const Ref<RenderGraphData>& renderGraphData);
-        static void Flush();
-
-        static void Draw(MeshRenderComponent* renderComponent);
+        void Draw(MeshRenderComponent* renderComponent);
 
         // Stats
         struct Statistics
@@ -28,8 +27,8 @@ namespace tomato
             uint32_t DrawCalls = 0;
         };
 
-        static void ResetStats();
-        [[nodiscard]] static Statistics GetStats();
+        void                     ResetStats();
+        [[nodiscard]] Statistics GetStats();
 
     private:
         struct Renderer3DConstant
@@ -41,11 +40,12 @@ namespace tomato
         {
             vector<MeshRenderComponent*> RenderComponents;
             vector<Renderer3DConstant>   ConstantData;
+            vector<tLightInfo>           Lights;
             Renderer3D::Statistics       Stats;
         };
 
-        static MeshRendererData  s_Data;
-        static StructuredBuffer* s_StructuredBuffer;
-
+        MeshRendererData  s_Data;
+        StructuredBuffer* s_StructuredBuffer = nullptr;
+        StructuredBuffer* s_Light3DBuffer = nullptr;
     };
 }

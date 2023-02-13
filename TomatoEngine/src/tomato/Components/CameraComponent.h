@@ -4,10 +4,10 @@
 namespace tomato
 {
     // TODO 레이어 마스크
-    class CameraComponent : public Component
+    class CameraComponent final : public Component
     {
     public:
-        enum class ProjectionType { Perspective = 0, Orthographic = 1 };
+        enum class eProjectionType { Perspective = 0, Orthographic = 1 };
 
     public:
         CameraComponent();
@@ -23,7 +23,7 @@ namespace tomato
         [[nodiscard]] float          GetOrthographicSize() const { return m_OrthographicSize; }
         [[nodiscard]] float          GetOrthographicNearClip() const { return m_OrthographicNear; }
         [[nodiscard]] float          GetOrthographicFarClip() const { return m_OrthographicFar; }
-        [[nodiscard]] ProjectionType GetProjectionType() const { return m_ProjectionType; }
+        [[nodiscard]] eProjectionType GetProjectionType() const { return m_ProjectionType; }
         [[nodiscard]] const Matrix& GetProjection() const { return m_Projection; }
 
         void SetPerspectiveVerticalFOV(float verticalFov)
@@ -62,7 +62,7 @@ namespace tomato
             RecalculateProjection();
         }
 
-        void SetProjectionType(ProjectionType type)
+        void SetProjectionType(eProjectionType type)
         {
             m_ProjectionType = type;
             RecalculateProjection();
@@ -76,7 +76,7 @@ namespace tomato
         bool m_bFixedAspectRatio = false;
 
     private:
-        ProjectionType m_ProjectionType = ProjectionType::Perspective;
+        eProjectionType m_ProjectionType = eProjectionType::Perspective;
 
         float m_PerspectiveFOV = XMConvertToRadians(45.0f);
         float m_PerspectiveNear = 0.01f;

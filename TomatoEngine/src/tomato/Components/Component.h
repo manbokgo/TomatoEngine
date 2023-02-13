@@ -28,6 +28,7 @@ namespace tomato
         GET_OTHER_COMPONENT_DECLARE(Rigidbody2D);
         GET_OTHER_COMPONENT_DECLARE(Animator);
         GET_OTHER_COMPONENT_DECLARE(Light2D);
+        GET_OTHER_COMPONENT_DECLARE(Light3D);
         GET_OTHER_COMPONENT_DECLARE(ParticleSystem);
         GET_OTHER_COMPONENT_DECLARE(TileMap);
 
