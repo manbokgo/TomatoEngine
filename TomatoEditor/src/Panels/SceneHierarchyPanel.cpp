@@ -261,7 +261,7 @@ namespace tomato
 			{
 				if (const ImGuiPayload* entityPayload = ImGui::AcceptDragDropPayload("Entity"))
 				{
-					m_DraggedEntity = static_cast<Entity*>(entityPayload->Data);
+					m_DraggedEntity = *static_cast<Entity**>(entityPayload->Data);
 					m_DraggedEntityTarget = entity;
 				}
 				else if (const ImGuiPayload* assetPanelPayload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
@@ -280,7 +280,7 @@ namespace tomato
 
 			if (ImGui::BeginDragDropSource())
 			{
-				ImGui::SetDragDropPayload("Entity", entity, sizeof(entity));
+				ImGui::SetDragDropPayload("Entity", &entity, sizeof(entity));
 				ImGui::TextUnformatted(entity->GetName().c_str());
 				ImGui::EndDragDropSource();
 			}
@@ -363,29 +363,22 @@ namespace tomato
 						break;
 				}
 
-				// TODO 라인
-				/*
 				ImDrawList* drawList = ImGui::GetWindowDrawList();
 
 				ImVec2 verticalLineEnd = verticalLineStart;
 				constexpr float lineThickness = 1.5f;
 
-				for (size_t i = 0; i < childs.size(); i++)
+				for (const auto& child : children)
 				{
-					UUID childId = entity.GetRelationship().Children[i];
-					Entity child = m_Scene->GetEntity(childId);
-					const float HorizontalTreeLineSize = child.GetRelationship().Children.empty() ? 18.0f : 9.0f; //chosen arbitrarily
+					const float HorizontalTreeLineSize = child->GetChildren().empty() ? 18.0f : 9.0f; //chosen arbitrarily
 					const ImRect childRect = DrawEntityNode(child, depth + 1, forceExpandTree, isPartOfPrefab);
 
 					const float midpoint = (childRect.Min.y + childRect.Max.y) / 2.0f;
 					drawList->AddLine(ImVec2(verticalLineStart.x, midpoint), ImVec2(verticalLineStart.x + HorizontalTreeLineSize, midpoint), treeLineColor, lineThickness);
 					verticalLineEnd.y = midpoint;
 				}
-
+				
 				drawList->AddLine(verticalLineStart, verticalLineEnd, treeLineColor, lineThickness);
-				*/
-
-
 			}
 
 			if (opened && children.size() > 0)

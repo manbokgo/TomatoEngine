@@ -11,27 +11,96 @@ namespace tomato {
     void CreateTestLevel(const Ref<Scene>& scene)
     {
 		{
-			Entity* pObject = scene->CreateEntity("Sphere");
+			Entity* sphere = scene->CreateEntity("Sphere");
 
-			pObject->AddComponent<TransformComponent>();
-			pObject->AddComponent<MeshRenderComponent>();
+			sphere->AddComponent<TransformComponent>();
+			sphere->AddComponent<MeshRenderComponent>();
 
-			pObject->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<Mesh>(L"SphereMesh"));
-			pObject->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<Material>(L"Std3DMtrl"));
+			sphere->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<Mesh>(L"SphereMesh"));
+			sphere->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<Material>(L"Std3DMtrl"));
 		}
 
 		{
-			Entity* pDirLight = scene->CreateEntity("DirectionalLight");
+			Entity* sphere = scene->CreateEntity("Sphere (2)");
 
-			pDirLight->AddComponent<TransformComponent>();
-			pDirLight->AddComponent<Light3DComponent>();
+			sphere->AddComponent<TransformComponent>();
+			sphere->AddComponent<MeshRenderComponent>();
 
-			pDirLight->Transform()->SetRelativeRotation({ XM_PI / 2.f, 0.f, 0.f });
+			sphere->Transform()->SetRelativePos({ 2, -1, 0 });
 
-			pDirLight->Light3D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
-			pDirLight->Light3D()->SetLightSpecular(Vec3(0.4f, 0.4f, 0.4f));
-			pDirLight->Light3D()->SetLightAmbient(Vec3(0.15f, 0.15f, 0.15f));
-			pDirLight->Light3D()->SetLightType(eLightType::Directional);
+			sphere->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<Mesh>(L"SphereMesh"));
+			sphere->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<Material>(L"Std3DMtrl"));
+		}
+
+		{
+			Entity* plane = scene->CreateEntity("Plane");
+
+			plane->AddComponent<TransformComponent>();
+			plane->AddComponent<MeshRenderComponent>();
+
+			plane->Transform()->SetRelativePos({0, -2, 0});
+			plane->Transform()->SetRelativeScale({10, 10, 1});
+			plane->Transform()->SetRelativeRotation({ XM_PI / 2.f, 0, 0});
+
+			plane->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<Mesh>(L"RectMesh"));
+			plane->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<Material>(L"Std3DMtrl"));
+		}
+
+		/*{
+			Entity* directionalLight = scene->CreateEntity("DirectionalLight");
+
+			directionalLight->AddComponent<TransformComponent>();
+			directionalLight->AddComponent<Light3DComponent>();
+
+			directionalLight->Transform()->SetRelativeRotation({ XM_PI / 2.f, 0.f, 0.f });
+			directionalLight->Transform()->SetRelativePos({ 0, 5, 0 });
+
+			directionalLight->Light3D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
+			directionalLight->Light3D()->SetLightSpecular(Vec3(0.4f, 0.4f, 0.4f));
+			directionalLight->Light3D()->SetLightAmbient(Vec3(0.15f, 0.15f, 0.15f));
+			directionalLight->Light3D()->SetLightType(eLightType::Directional);
+		}*/
+
+		{
+			Entity* pointLight = scene->CreateEntity("PointLight");
+
+			pointLight->AddComponent<TransformComponent>();
+			pointLight->AddComponent<Light3DComponent>();
+			
+			pointLight->Transform()->SetRelativePos({ 0, -1, 0 });
+
+			pointLight->Light3D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
+			pointLight->Light3D()->SetLightType(eLightType::Point);
+			pointLight->Light3D()->SetRadius(3);
+		}
+
+		{
+			Entity* pointLight = scene->CreateEntity("PointLight (2)");
+
+			pointLight->AddComponent<TransformComponent>();
+			pointLight->AddComponent<Light3DComponent>();
+
+			pointLight->Transform()->SetRelativePos({ 3, -0.5f, 0 });
+
+			pointLight->Light3D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
+			pointLight->Light3D()->SetLightType(eLightType::Point);
+			pointLight->Light3D()->SetRadius(3);
+		}
+
+		{
+			Entity* spotLight = scene->CreateEntity("SpotLight");
+
+			spotLight->AddComponent<TransformComponent>();
+			spotLight->AddComponent<Light3DComponent>();
+
+			spotLight->Transform()->SetRelativePos({ 0, 3.f, 0 });
+			spotLight->Transform()->SetRelativeRotation({ XM_PI / 2.f, 0, 0 });
+
+			spotLight->Light3D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
+			spotLight->Light3D()->SetLightType(eLightType::Spot);
+			spotLight->Light3D()->SetRadius(5);
+			spotLight->Light3D()->SetAngleInner(XMConvertToRadians(20.f));
+			spotLight->Light3D()->SetAngleOuter(XMConvertToRadians(60.f));
 		}
     }
 }

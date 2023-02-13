@@ -136,7 +136,8 @@ namespace tomato
         // 공간이 모자라면 추가할당하면서 초기화한다.
         if (m_iElementCount < _iElementCount)
         {
-            Create(m_iElementSize, _iElementCount, m_eType, _pSrc);
+            // TODO Hack
+            Create(m_iElementSize, _iElementCount, m_eType, _pSrc, true);
         }
 
         // 공간이 충분하다면, 데이터 전송

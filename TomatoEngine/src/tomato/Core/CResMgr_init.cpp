@@ -425,24 +425,28 @@ namespace tomato
 
 
         // 사각형 메쉬 만들기
-        v.vPos   = Vec3(-0.5f, 0.5f, 0.f);
+        v.vPos = Vec3(-0.5f, 0.5f, 0.f);
+        v.vNormal = Vec3(0.f, 0.f, -1.f);
         v.vColor = Vec4(1.f, 0.f, 0.f, 1.f);
-        v.vUV    = Vec2(0.f, 0.f);
+        v.vUV = Vec2(0.f, 0.f);
         vecVtx.push_back(v);
 
-        v.vPos   = Vec3(0.5f, 0.5f, 0.f);
+        v.vPos = Vec3(0.5f, 0.5f, 0.f);
+        v.vNormal = Vec3(0.f, 0.f, -1.f);
         v.vColor = Vec4(0.f, 0.f, 1.f, 1.f);
-        v.vUV    = Vec2(1.f, 0.f);
+        v.vUV = Vec2(1.f, 0.f);
         vecVtx.push_back(v);
 
-        v.vPos   = Vec3(0.5f, -0.5f, 0.f);
+        v.vPos = Vec3(0.5f, -0.5f, 0.f);
+        v.vNormal = Vec3(0.f, 0.f, -1.f);
         v.vColor = Vec4(0.f, 1.f, 0.f, 1.f);
-        v.vUV    = Vec2(1.f, 1.f);
+        v.vUV = Vec2(1.f, 1.f);
         vecVtx.push_back(v);
 
-        v.vPos   = Vec3(-0.5f, -0.5f, 0.f);
+        v.vPos = Vec3(-0.5f, -0.5f, 0.f);
+        v.vNormal = Vec3(0.f, 0.f, -1.f);
         v.vColor = Vec4(0.f, 0.f, 1.f, 1.f);
-        v.vUV    = Vec2(0.f, 1.f);
+        v.vUV = Vec2(0.f, 1.f);
         vecVtx.push_back(v);
 
         // Index
@@ -477,6 +481,7 @@ namespace tomato
         // 원형메쉬 만들기
         // 중심점	
         v.vPos   = Vec3(0.f, 0.f, 0.f);
+        v.vNormal = Vec3(0.f, 0.f, -1.f);
         v.vColor = Vec4(1.f, 0.f, 0.f, 1.f);
         v.vUV    = Vec2(0.5f, 0.5f);
 
@@ -489,6 +494,7 @@ namespace tomato
         for (int i = 0; i < iSlice; ++i)
         {
             v.vPos   = Vec3(fRadius * cosf(fTheta * (float)i), fRadius * sinf(fTheta * (float)i), 0.f);
+            v.vNormal = Vec3(0.f, 0.f, -1.f);
             v.vColor = Vec4(1.f, 1.f, 1.f, 1.f);
             v.vUV    = Vec2(v.vPos.x + 0.5f, 1.f - (v.vPos.y + 0.5f));
 

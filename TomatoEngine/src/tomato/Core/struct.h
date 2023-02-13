@@ -35,8 +35,8 @@ namespace tomato
         Vec4       vWorldDir;  // ±¤¿øÀÇ ¹æÇâ
         eLightType iLightType; // ±¤¿ø Å¸ÀÔ
         float      fRadius;    // ±¤¿ø ¹Ý°æ (POINT, SPOT)
-        float      fAngle;     // ±¤¿ø °¢µµ (SPOT)
-        int        pad;
+        float      fAngleInner;     // ±¤¿ø °¢µµ (SPOT)
+        float      fAngleOuter;
     };
 
 

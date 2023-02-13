@@ -491,10 +491,10 @@ namespace tomato
 
         DrawComponent<CameraComponent>(ICON_MDI_CAMERA " Camera", entity, [](CameraComponent& component)
         {
-                if (!UI::BeginProperties())
-                {
-                    return;
-                }
+            if (!UI::BeginProperties())
+            {
+                return;
+            }
 
             UI::Property("Primary", component.m_bPrimary);
 
@@ -690,10 +690,10 @@ namespace tomato
 
         DrawComponent<Rigidbody2DComponent>(ICON_MDI_SOCCER " Rigidbody 2D", entity, [](Rigidbody2DComponent& component)
         {
-                if (!UI::BeginProperties())
-                {
-                    return;
-                }
+            if (!UI::BeginProperties())
+            {
+                return;
+            }
 
             const char* bodyTypeStrings[] = {"Static", "Kinematic", "Dynamic"};
             int         bodyType = static_cast<int>(component.Type);
@@ -752,6 +752,70 @@ namespace tomato
                     UI::EndProperties();
                 }
             });
+
+        DrawComponent<Light3DComponent>(ICON_MDI_LIGHTBULB " Light 3D", entity, [](Light3DComponent& component)
+        {
+            if (!UI::BeginProperties())
+            {
+                return;
+            }
+
+            static const char* lightTypeStrings[] = {"Directional", "Point", "Spot"};
+            int                lightType = static_cast<int>(component.m_Info.iLightType);
+            if (UI::Property("Light Type", lightType, lightTypeStrings, 3))
+            {
+                component.m_Info.iLightType = static_cast<eLightType>(lightType);
+            }
+            
+            UI::PropertyVector("Color", component.m_Info.vDiff, true, false);
+
+            ImGui::Spacing();
+
+            if (component.m_Info.iLightType == eLightType::Point)
+            {
+                UI::Property("Range", component.m_Info.fRadius);
+            }
+            else if (component.m_Info.iLightType == eLightType::Spot)
+            {
+                UI::Property("Range", component.m_Info.fRadius);
+
+                bool innerMoved = false;
+                float degrees = XMConvertToDegrees(component.m_AngleOuter);
+                if (UI::Property("Outer Angle", degrees, 1.0f, 90.0f))
+                {
+                    component.m_AngleOuter = XMConvertToRadians(degrees);
+                }
+                degrees = XMConvertToDegrees(component.m_AngleInner);
+                if (UI::Property("Inner Angle", degrees, 1.0f, 90.0f))
+                {
+                    innerMoved = true;
+                    component.m_AngleInner = XMConvertToRadians(degrees);
+                }
+
+                if (component.m_Info.fRadius < 0.1f)
+                {
+                    component.m_Info.fRadius = 0.1f;
+                }
+
+                if (component.m_AngleOuter < component.m_AngleInner)
+                {
+                    if (innerMoved)
+                    {
+                        component.m_AngleOuter = component.m_AngleInner;
+                    }
+                    else
+                    {
+                        component.m_AngleInner = component.m_AngleOuter;
+                    }
+                }
+            }
+            else
+            {
+            }
+
+            UI::EndProperties();
+        });
+
 
         DrawScripts(entity);
 

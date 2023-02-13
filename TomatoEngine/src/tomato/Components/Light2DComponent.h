@@ -17,12 +17,12 @@ namespace tomato
         void SetLightType(eLightType _eType) { m_Info.iLightType = _eType; }
 
         void SetRadius(float _fRadius) { m_Info.fRadius = _fRadius; }
-        void SetAngle(float _fAngle) { m_Info.fAngle = _fAngle; }
+        void SetAngleInner(float _fAngle) { m_Info.fAngleInner = _fAngle; }
+        void SetAngleOuter(float _fAngle) { m_Info.fAngleOuter = _fAngle; }
 
-        Vec3       GetLightColor() { return m_Info.vDiff.XYZ(); }
+        Vec3 GetLightColor() { return m_Info.vDiff.XYZ(); }
         eLightType GetLightType(eLightType _eType) { return m_Info.iLightType; }
-        float      GetRadius(float _fRadius) { return m_Info.fRadius; }
-        float      GetAngle(float _fAngle) { return m_Info.fAngle; }
+        float GetRadius(float _fRadius) { return m_Info.fRadius; }
 
 
     public:

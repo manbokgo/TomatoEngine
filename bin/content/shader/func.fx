@@ -98,7 +98,45 @@ void CalcLight3D(float3 _vViewPos, float3 _vViewNormal, int _LightIdx, inout tLi
     // SpotLight
     else
     {
-        
+        // ViewSpace 상에서 광원의 위치를 알아낸다.
+        float3 vLightViewPos = mul(float4(lightinfo.vWorldPos.xyz, 1.f), g_matView);
+
+        // 광원의 위치에서 표면을 향하는 벡터를 구한다.
+        ViewLightDir = _vViewPos - vLightViewPos;
+
+        float3 ViewLightCenterDir = normalize(mul(float4(lightinfo.vWorldDir.xyz, 0.f), g_matView));
+
+
+        // 광원에서 표면까지의 거리를 구한다.
+        float fDist = length(ViewLightDir);
+
+        // 광원에서 표면을 향하는 단위벡터를 구한다.        
+        ViewLightDir = normalize(ViewLightDir);
+
+        // 반경대비 거리에 따른 빛의 세기 비율
+        //float fRatio = saturate(1.f - (fDist / lightinfo.fRadius));        
+        float fRatio = cos(saturate(fDist / lightinfo.fRadius) * 3.1415926535f * 0.5f);
+
+        float kD = saturate(dot(-ViewLightDir, _vViewNormal));
+
+        // pow 방법
+        // float kS = pow(saturate(dot(ViewLightDir, ViewLightCenterDir)), 8);
+
+        float rho = dot(ViewLightDir, ViewLightCenterDir);
+        float kS = saturate((rho - lightinfo.fAngleOuter) / (lightinfo.fAngleInner - lightinfo.fAngleOuter));
+
+        fDiffPow = kS * kD * fRatio;
+
+        // 반사광 세기를 구함
+        // 표면의 빛의 반사벡터       
+        float3 vViewReflect = normalize(ViewLightDir + 2.f * dot(-ViewLightDir, _vViewNormal) * _vViewNormal);
+
+        // 시점에서 표면을 향하는 벡터
+        float3 vEye = normalize(_vViewPos);
+
+        // 시선 벡터와 반사벡터를 내적해서 반사광의 세기를 구함
+        fSpecPow = saturate(dot(-vEye, vViewReflect));
+        fSpecPow = pow(fSpecPow, 20);
     }    
     
     // 최종 난반사광

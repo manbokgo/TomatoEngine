@@ -17,7 +17,7 @@ namespace tomato
     Renderer3D::Renderer3D() {}
 
     Renderer3D::~Renderer3D() {}
-    
+
     void Renderer3D::Init()
     {
         s_Data.RenderComponents.reserve(16);
@@ -51,7 +51,7 @@ namespace tomato
 
         pCB->SetData(&g_transform);
         pCB->UpdateData(ePipelineStage::AllStage);
-        
+
         s_Light3DBuffer->SetData(s_Data.Lights.data(), (UINT)s_Data.Lights.size());
         s_Light3DBuffer->UpdateData(14, ePipelineStage::AllStage);
         g_global.iLight3DCount = (UINT)s_Data.Lights.size();
@@ -67,15 +67,10 @@ namespace tomato
             renderGraphData->DepthStencil->GetDSV().Get());
 
         // TODO viewport 리사이즈
-        D3D11_VIEWPORT m_tViewPort;
-        m_tViewPort.TopLeftX = 0;
-        m_tViewPort.TopLeftY = 0;
-        m_tViewPort.Width = 1280;
-        m_tViewPort.Height = 720;
-        m_tViewPort.MinDepth = 0.f;
-        m_tViewPort.MaxDepth = 1.f;
+        auto size = renderGraphData->RenderTarget->GetSize();
+        Viewport viewport(0, 0, size.x, size.y);
 
-        CONTEXT->RSSetViewports(1, &m_tViewPort);
+        CONTEXT->RSSetViewports(1, viewport.Get11());
 
         constexpr float arrColor[4] = {0.2f, 0.2f, 0.2f, 1.f};
         CONTEXT->ClearRenderTargetView(renderGraphData->RenderTarget->GetRTV().Get(), arrColor);
@@ -180,12 +175,13 @@ namespace tomato
             Mesh* mesh = renderComponent->GetMesh().get();
             if (mesh != batchMesh)
             {
+                // 0번 인덱스는 그냥 넘어간다
                 if (pos > batchStart)
                 {
                     s_StructuredBuffer->SetData(&s_Data.ConstantData[batchStart], pos - batchStart);
                     // TODO 한번만 바인딩하고 싶은데 크기 넘어서면 기존 버퍼가 날아감
                     s_StructuredBuffer->UpdateData(44, VS | PS);
-                    mesh->RenderInstanced(pos - batchStart);
+                    batchMesh->RenderInstanced(pos - batchStart);
                     ++s_Data.Stats.DrawCalls;
                 }
 

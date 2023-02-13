@@ -13,8 +13,8 @@
 
 namespace tomato
 {
-    Renderer2D::Renderer2DData    Renderer2D::s_Data;
-    StructuredBuffer* Renderer2D::s_StructuredBuffer;
+    Renderer2D::Renderer2DData Renderer2D::s_Data;
+    StructuredBuffer*          Renderer2D::s_StructuredBuffer;
 
     void Renderer2D::Init()
     {
@@ -136,7 +136,7 @@ namespace tomato
 
         eShaderDomain batchDomain = eShaderDomain::Opaque;
         Material*     batchMaterial = nullptr;
-        UINT          lastBatchStart = 0;
+        UINT          batchStart = 0;
 
         const UINT renderCount = (UINT)s_Data.RenderComponents.size();
         for (UINT pos = 0; pos < renderCount; ++pos)
@@ -153,26 +153,26 @@ namespace tomato
 
             if (material != batchMaterial)
             {
+                // 0번 인덱스는 그냥 넘어간다
+                if (pos > batchStart)
+                {
+                    s_StructuredBuffer->SetData(&s_Data.ConstantData[batchStart], pos - batchStart);
+                    // TODO 한번만 바인딩하고 싶은데 크기 넘어서면 기존 버퍼가 날아감
+                    s_StructuredBuffer->UpdateData(44, VS | PS);
+                    // mesh->RenderInstanced(pos - batchStart);
+                    ++s_Data.Stats.DrawCalls;
+                }
+
                 material->Bind();
                 batchMaterial = material;
-
-                // 0번 인덱스는 그냥 넘어간다
-                if (pos == lastBatchStart) { continue; }
-
-                s_StructuredBuffer->SetData(&s_Data.ConstantData[lastBatchStart], pos - lastBatchStart);
-                // TODO 한번만 바인딩하고 싶은데 크기 넘어서면 기존 버퍼가 날아감
-                s_StructuredBuffer->UpdateData(44, VS | PS);
-                // mesh->RenderInstanced(pos - batchStart);
-                ++s_Data.Stats.DrawCalls;
-
-                lastBatchStart = pos;
+                batchStart = pos;
             }
         }
 
         // Flush the final batch.
         if (batchMaterial)
         {
-            s_StructuredBuffer->SetData(&s_Data.ConstantData[lastBatchStart], renderCount - lastBatchStart);
+            s_StructuredBuffer->SetData(&s_Data.ConstantData[batchStart], renderCount - batchStart);
             s_StructuredBuffer->UpdateData(44, VS | PS);
             // batchMesh->RenderInstanced(renderCount - batchStart);
             ++s_Data.Stats.DrawCalls;
