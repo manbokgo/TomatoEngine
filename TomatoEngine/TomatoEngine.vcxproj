@@ -330,7 +330,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)\$(ProjectName)\</IntDir>
-    <ExternalIncludePath>vendor;vendor\box2d\include;vendor\DirectXTK\Inc;vendor\DirectXTex\DirectXTex;vendor\FMOD\include;vendor\fmt\include;vendor\icons\include;vendor\ImGuizmo;vendor\imgui;vendor\yaml-cpp\include;vendor\spdlog\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>vendor;vendor\box2d\include;vendor\DirectXTK\Inc;vendor\DirectXTex\DirectXTex;vendor\FMOD\include;vendor\icons\include;vendor\ImGuizmo;vendor\imgui;vendor\yaml-cpp\include;vendor\spdlog\include;vendor\magic_enum\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)\</OutDir>

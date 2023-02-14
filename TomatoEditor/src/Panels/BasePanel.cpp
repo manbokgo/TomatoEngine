@@ -2,7 +2,6 @@
 #include "BasePanel.h"
 
 #include "../Utils/EditorTheme.h"
-#include <fmt/core.h>
 
 namespace tomato
 {

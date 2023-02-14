@@ -4,6 +4,7 @@
 // #include <tomato/Scene/EntitySerializer.h>
 // #include <tomato/Core/Filesystem.h>
 
+#include <FileWatch.hpp>
 #include <icons/IconsMaterialDesignIcons.h>
 #include <imgui/imgui_internal.h>
 #include <tomato/Utils/PlatformUtils.h>
@@ -11,7 +12,6 @@
 #include "../EditorLayer.h"
 #include "../Utils/UI.h"
 #include "../Utils/EditorTheme.h"
-#include "../Utils/FileWatch.hpp"
 #include "tomato/Core/CResMgr.h"
 #include "tomato/Resources/Texture.h"
 #include "tomato/Utils/StringUtils.h"

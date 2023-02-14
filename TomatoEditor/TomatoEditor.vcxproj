@@ -64,7 +64,6 @@
     <ClInclude Include="src\Panels\StatsPanel.h" />
     <ClInclude Include="src\pch.h" />
     <ClInclude Include="src\Utils\EditorTheme.h" />
-    <ClInclude Include="src\Utils\FileWatch.hpp" />
     <ClInclude Include="src\Utils\UI.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -124,7 +123,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)\$(ProjectName)\</IntDir>
-    <ExternalIncludePath>..\TomatoEngine\vendor;..\TomatoEngine\vendor\box2d\include;..\TomatoEngine\vendor\DirectXTK\Inc;..\TomatoEngine\vendor\DirectXTex\DirectXTex;..\TomatoEngine\vendor\FMOD\include;..\TomatoEngine\vendor\fmt\include;..\TomatoEngine\vendor\icons\include;..\TomatoEngine\vendor\ImGuizmo;..\TomatoEngine\vendor\imgui;..\TomatoEngine\vendor\yaml-cpp\include;..\TomatoEngine\vendor\spdlog\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>..\TomatoEngine\vendor;..\TomatoEngine\vendor\box2d\include;..\TomatoEngine\vendor\DirectXTK\Inc;..\TomatoEngine\vendor\DirectXTex\DirectXTex;..\TomatoEngine\vendor\FMOD\include;..\TomatoEngine\vendor\fmt\include;..\TomatoEngine\vendor\icons\include;..\TomatoEngine\vendor\ImGuizmo;..\TomatoEngine\vendor\imgui;..\TomatoEngine\vendor\yaml-cpp\include;..\TomatoEngine\vendor\spdlog\include;..\TomatoEngine\vendor\magic_enum\include;vendor\filewatch;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)\</OutDir>

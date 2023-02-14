@@ -14,10 +14,6 @@
 	path = TomatoEngine/vendor/ImGuizmo
 	url = https://github.com/CedricGuillemet/ImGuizmo.git
 	branch = master
-[submodule "TomatoEngine/vendor/fmt"]
-	path = TomatoEngine/vendor/fmt
-	url = https://github.com/fmtlib/fmt.git
-	branch = master
 [submodule "TomatoEngine/vendor/yaml-cpp"]
 	path = TomatoEngine/vendor/yaml-cpp
 	url = https://github.com/jbeder/yaml-cpp.git
@@ -30,3 +26,11 @@
 	path = TomatoEngine/vendor/spdlog
 	url = https://github.com/gabime/spdlog.git
 	branch = v1.x
+[submodule "TomatoEditor/vendor/filewatch"]
+	path = TomatoEditor/vendor/filewatch
+	url = https://github.com/ThomasMonkman/filewatch.git
+	branch = master
+[submodule "TomatoEngine/vendor/magic_enum"]
+	path = TomatoEngine/vendor/magic_enum
+	url = https://github.com/Neargye/magic_enum.git
+	branch = master
